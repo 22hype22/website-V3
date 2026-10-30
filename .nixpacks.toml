@@ -1,0 +1,9 @@
+# Railway: Node 22. `npm run build` writes the static site to out/, and server.mjs serves it on PORT.
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+[phases.install]
+cmds = ["npm ci"]
+[phases.build]
+cmds = ["npm run build"]
+[start]
+cmd = "npm start"

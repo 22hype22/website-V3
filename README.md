@@ -44,6 +44,17 @@ npm run build:artifact
 
 `out-artifact/` additionally moves Next's `_next` folder under `n/`, for hosts that reserve top-level names starting with an underscore.
 
+## Deploy (Railway)
+
+The repo carries the same Railway setup as the Oversite CAD repo: `railway.json` and `.nixpacks.toml` build with
+Node 22 (`npm ci`, `npm run build`) and start `node server.mjs`, which serves the static export from `out/` on
+`PORT` and answers `/health` for the healthcheck. Connect the GitHub repo to a Railway service and every push deploys.
+
+## Claude Code setup
+
+`.claude/` (skills, agents, settings), `.agents/`, `.mcp.json`, `skills-lock.json` and `claudex.toml` are copied
+from the Oversite CAD repo so the same skills, MCP servers and Claudex profiles are available here.
+
 ## Switches
 
 `src/config/site.ts`

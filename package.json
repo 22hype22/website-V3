@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.mjs",
     "lint": "eslint",
     "vendor-check": "node -e \"console.log(Object.keys(require('./package.json').dependencies))\"",
     "build:relative": "next build && node scripts/relative-export.mjs",
@@ -36,5 +36,8 @@
     "jsrepo": "^3.8.2",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
