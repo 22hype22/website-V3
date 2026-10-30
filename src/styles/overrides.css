@@ -1,0 +1,139 @@
+/* Loaded after webflow.css: fonts, the fluid root size the live site sets inline, and the few pieces this
+   React build does itself (preloader, brand lockup, mobile menu, FAQ accordion, cursor). */
+
+@font-face {
+  font-family: "Satoshi Variable";
+  src: url("/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+/* the live site's fluid type scale */
+html { font-size: 1rem; }
+@media screen and (max-width: 1440px) { html { font-size: calc(0.4650817236255572rem + 0.5943536404160475vw); } }
+@media screen and (max-width: 767px) { html { font-size: 1.1875rem; } }
+@media screen and (max-width: 479px) { html { font-size: calc(0.6226415094339621rem + 1.886792452830189vw); } }
+@media screen and (max-width: 320px) { html { font-size: calc(3.3306690738754696e-16rem + 4.999999999999998vw); } }
+@media screen and (max-width: 240px) { html { font-size: calc(0.24790794979079497rem + 3.3472803347280333vw); } }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background: #fff;
+}
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+.main-wrapper { contain: paint; }
+.w-richtext > :not(div):first-child, .w-richtext > div:first-child > :first-child { margin-top: 0 !important; }
+.w-richtext > :last-child { margin-bottom: 0 !important; }
+.container-medium, .container-small, .container-large { margin-right: auto !important; margin-left: auto !important; }
+.text-style-3lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+.text-style-2lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.hide { display: none !important; }
+@media screen and (max-width: 991px) { .hide, .hide-tablet { display: none !important; } }
+@media screen and (max-width: 767px) { .hide-mobile-landscape { display: none !important; } }
+@media screen and (max-width: 479px) { .hide-mobile { display: none !important; } }
+
+/* Webflow's .p-14 / .p-40 are type-size classes, but Tailwind also generates them as padding utilities */
+.p-14, .p-40 { padding: 0; }
+
+/* split text pieces */
+.word, .char { display: inline-block; }
+.footer_text { overflow: hidden; }
+
+/* ───────── brand lockup (replaces the AlphaLedger logo images) ───────── */
+.brand-lockup { display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; color: #020202; white-space: nowrap; }
+.brand-lockup img { width: 1.55rem; height: 1.55rem; display: block; }
+.brand-lockup span { font-size: 1.65rem; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
+.brand-lockup.is-white { color: #fff; }
+.brand-lockup.is-footer img { width: 1.9rem; height: 1.9rem; }
+.brand-lockup.is-footer span { font-size: 2rem; }
+.brand .logo { display: none; }
+.icon-logo { width: 1.38rem; height: 1.38rem; object-fit: contain; }
+
+/* ───────── preloader ───────── */
+.preloader { display: flex; z-index: 9999; position: fixed; inset: 0; width: 100vw; height: 100vh; }
+.preloader-layer { position: absolute; inset: 0; background: #050505; display: flex; align-items: center; justify-content: center; }
+.preloader-lockup { display: flex; align-items: center; gap: 0.6rem; color: #fff; }
+.preloader-mark { position: relative; width: 1.6rem; height: 1.6rem; }
+.preloader-mark img { width: 100%; height: 100%; opacity: 0; transform: scale(0.5); clip-path: inset(50% 50% 50% 50%); }
+.preloader-dot { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff; opacity: 0; }
+.preloader-dot.a { left: 12%; top: 58%; }
+.preloader-dot.b { left: 72%; top: 24%; }
+.preloader-word { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.01em; white-space: pre; min-height: 1em; line-height: 1; }
+.preloader-glow { position: absolute; left: 50%; bottom: -30%; width: 70vw; height: 50vh; transform: translateX(-30%); background: radial-gradient(ellipse at center, rgba(255,255,255,.06), rgba(255,255,255,0) 60%); filter: blur(30px); pointer-events: none; }
+
+/* ───────── navigation ───────── */
+.link-wrapper .hover-line { transform: translateX(-100%); transition: transform .4s cubic-bezier(.22,1,.36,1); }
+.link-wrapper:hover .hover-line { transform: translateX(0); }
+.menu-button { cursor: pointer; }
+.menu-btn.is-close { display: none; }
+@media screen and (max-width: 767px) {
+  .navbar.is-open .menu-btn { display: none; }
+  .navbar.is-open .menu-btn.is-close { display: block; }
+  .navbar .nav-manu { display: none; }
+  .navbar.is-open .nav-manu { display: flex; position: fixed; inset: 4.5rem 0 0; z-index: 998; overflow: auto; }
+}
+
+/* ───────── hero ───────── */
+.hero_lottie video { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
+.lottie-dashboard video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ───────── FAQ accordion (Webflow dropdown behaviour, done here) ───────── */
+.dropdown-qna { position: relative; }
+.toggle-qna { cursor: pointer; }
+.dropdown-list-qn { display: block; position: relative; height: 0; overflow: hidden; }
+.dropdown-qna.is-open .faq-v { height: 0; }
+.faq-v { transition: height .3s; }
+
+/* ───────── pricing toggle ───────── */
+.switch-block { position: relative; }
+.togll-circ { transition: transform .3s cubic-bezier(.22,1,.36,1), background-color .2s; }
+.discover_period.is-yearly .togll-circ { transform: translateX(2.5rem); background-color: #fff; }
+.discover_month, .discover_year { transition: opacity .3s; }
+.discover_cena-wrap { position: relative; }
+.is-yearly-view .discover_month { opacity: 0; }
+.is-yearly-view .discover_year { opacity: 1; }
+
+/* ───────── custom cursor ───────── */
+.custom-cursor { opacity: 0; transition: opacity .25s; transform: translate(-50%, -50%); position: fixed; top: 0; left: 0; }
+
+/* ───────── swiper progress bar (the live site styles it through Webflow) ───────── */
+.swiper-pagination-progressbar { position: relative; width: 100%; height: 1px; background: rgba(2,2,2,.1); }
+.swiper-pagination-progressbar .swiper-pagination-progressbar-fill { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #020202; transform-origin: left top; }
+.swiper-btn-prev, .swiper-btn-next { cursor: pointer; }
+.swiper-button-disabled { opacity: .35; }
+
+/* ───────── footer: white arrow in the black "to top" pill, and the giant wordmark sized to span the page
+   like the live one does (our name is shorter, so the live size would leave it floating in the middle) ───────── */
+.btn-top .arrow-icon { filter: invert(1); }
+.footer_text { font-size: 22rem; white-space: nowrap; }
+@media screen and (max-width: 991px) { .footer_text { font-size: 27vw; } }
+@media screen and (max-width: 767px) { .footer_text { font-size: 27vw; } }
+@media screen and (max-width: 479px) { .footer_text { font-size: 22vw; } }
+
+/* ───────── odds and ends ───────── */
+.perfom_img { display: block; }
+.perfom_img.is-color { position: absolute; inset: 0; }
+.cookies { display: none; }
+[data-fade] { opacity: 0; }
+html.no-js [data-fade] { opacity: 1; }
+
+/* ───────── badge cards: the live SVG with its wordmark removed, our name and mark laid on top ───────── */
+.badge-card { display: block; }
+.badge-card > img:first-child { width: 100%; height: 100%; display: block; object-fit: contain; }
+.badge-card .badge-name { position: absolute; left: 9%; top: 9%; color: #fff; font-size: 7.5%; font-weight: 500; letter-spacing: -0.01em; }
+.badge-card .badge-mark { position: absolute; right: 21%; bottom: 10%; width: 11%; height: auto; }
+.products_img-3 .badge-name { font-size: 1rem; }
+.products_img-3-mb .badge-name { font-size: 0.8rem; }
+/* the Webflow sheet decides which badge shows where: the big one on desktop, the small one on phones */
+.products_img-3-mb.badge-card { display: none; }
+@media screen and (max-width: 991px) { .products_img-3.badge-card { display: none; } }
+@media screen and (max-width: 479px) { .products_img-3-mb.badge-card { display: inline-flex; } }
+.badge-card.is-center { position: relative; width: 100%; height: 100%; }
+.badge-card.is-center .badge-name { left: 10%; top: 10.5%; font-size: 1.65rem; }
+.badge-card.is-center .badge-mark { right: 20%; bottom: 10%; width: 2.6rem; }

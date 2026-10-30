@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import "@/styles/site.css";
-
-const inter = Inter({ subsets: ["latin"], weight: ["300", "400", "500", "600"], variable: "--font-inter", display: "swap" });
+import "swiper/css";
+import "@/styles/webflow.css";
+import "@/styles/overrides.css";
 
 export const metadata: Metadata = {
   title: "Oversite",
-  description: "Oversite connects traders and investors with analytics, verified performance, and new opportunities.",
+  description: "Oversite is the world's first performance network for serious traders. Turning performance into opportunity.",
   icons: { icon: "/assets/favicon.png" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

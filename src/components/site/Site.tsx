@@ -5,28 +5,29 @@ import { ReactLenis, type LenisRef } from "lenis/react";
 import "lenis/dist/lenis.css";
 import { gsap, ScrollTrigger, reduceMotion } from "@/lib/gsap";
 
-import Loader from "./Loader";
-import Nav from "./Nav";
+import Preloader from "./Preloader";
+import Navbar from "./Navbar";
 import Hero from "./Hero";
-import Experience from "./Experience";
-import Highlights from "./Highlights";
+import Get from "./Get";
 import Products from "./Products";
-import Bento from "./Bento";
-import Performance from "./Performance";
-import Funding from "./Funding";
+import CardsMobile from "./CardsMobile";
+import Supported from "./Supported";
+import Perfom from "./Perfom";
 import Why from "./Why";
-import Pricing from "./Pricing";
-import About from "./About";
-import Cta from "./Cta";
-import News from "./News";
+import Discover from "./Discover";
+import More from "./More";
+import Faq from "./Faq";
+import Stay from "./Stay";
+import Blog from "./Blog";
 import Footer from "./Footer";
+import Cursor from "./Cursor";
 
 export default function Site() {
   const lenisRef = useRef<LenisRef>(null);
-  const [revealed, setRevealed] = useState(false); // the loader has faded to white: the site is visible
-  const [loaded, setLoaded] = useState(false);     // the loader is gone
+  const [revealed, setRevealed] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
-  // Lenis ticks inside GSAP's ticker and feeds ScrollTrigger, so pins and scrubs stay in sync with the smoothed scroll.
+  // Lenis ticks inside GSAP's ticker and feeds ScrollTrigger (the live site runs Lenis at lerp .1, wheel ×0.7).
   useEffect(() => {
     const update = (time: number) => lenisRef.current?.lenis?.raf(time * 1000);
     gsap.ticker.add(update);
@@ -37,7 +38,6 @@ export default function Site() {
     return () => { gsap.ticker.remove(update); lenis?.off("scroll", ScrollTrigger.update); };
   }, []);
 
-  // Scrolling stays locked at the top until the loader has handed over.
   useEffect(() => {
     const lenis = lenisRef.current?.lenis;
     if (!lenis) return;
@@ -45,13 +45,15 @@ export default function Site() {
     else lenis.stop();
   }, [revealed]);
 
-  // Every in-page link scrolls through Lenis.
+  // in-page links scroll through Lenis
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const a = (e.target as HTMLElement).closest('a[href^="#"]');
       if (!a) return;
-      const target = document.querySelector(a.getAttribute("href") || "");
-      if (!target) return;
+      const href = a.getAttribute("href") || "";
+      if (href === "#") { e.preventDefault(); return; }
+      const target = document.querySelector(href);
+      if (!target) { e.preventDefault(); return; }
       e.preventDefault();
       lenisRef.current?.lenis?.scrollTo(target as HTMLElement, { duration: reduceMotion() ? 0 : 1.4, easing: (x) => 1 - Math.pow(1 - x, 4) });
     };
@@ -60,26 +62,27 @@ export default function Site() {
   }, []);
 
   return (
-    <ReactLenis root ref={lenisRef} options={{ autoRaf: false, lerp: 0.1, smoothWheel: !reduceMotion() }}>
-      {!loaded && <Loader onReveal={() => setRevealed(true)} onDone={() => setLoaded(true)} />}
-      <div className={`page${revealed ? " is-ready" : ""}`}>
-        <Nav ready={revealed} />
-        <Hero ready={revealed} />
-        <Experience />
-        <Highlights />
-        <Products />
-        <Bento />
-        <div className="dark-wrap">
-          <Performance />
-          <Funding />
+    <ReactLenis root ref={lenisRef} options={{ autoRaf: false, lerp: 0.1, wheelMultiplier: 0.7, smoothWheel: !reduceMotion() }}>
+      <div className="page-wrapper">
+        <Navbar ready={revealed} />
+        {!loaded && <Preloader onReveal={() => setRevealed(true)} onDone={() => setLoaded(true)} />}
+        <main id="top" className="main-wrapper">
+          <Hero ready={revealed} />
+          <Get />
+          <Products />
+          <CardsMobile />
+          <Supported />
+          <Perfom />
           <Why />
-          <Pricing />
-          <About />
-        </div>
-        <Cta />
-        <News />
-        <Footer />
+          <Discover />
+          <More />
+          <Faq />
+          <Stay />
+          <Blog />
+          <Footer />
+        </main>
       </div>
+      <Cursor />
     </ReactLenis>
   );
 }

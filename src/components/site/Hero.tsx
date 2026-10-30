@@ -1,47 +1,90 @@
 "use client";
 
 import { useRef } from "react";
-import { Play, ArrowDown } from "lucide-react";
-import SplitText from "@/components/SplitText";
 import { gsap, useGSAP, ScrollTrigger } from "@/lib/gsap";
 import { site } from "@/config/site";
-import Laptop from "./Laptop";
+import { Counter, Mark, Split } from "./primitives";
 
-const TITLE = "Unlock Your Trading Potential";
-
-/* The hero: the headline comes in word by word, each word clearing from a blur (React Bits SplitText on GSAP),
-   then the subline, the scroll hint and the corner mark follow. Nothing animates until the loader has handed over. */
+/* The hero: headline and subline fade up, the dashboard video sits inside the laptop lid in perspective, and as
+   you scroll the lid opens flat while the video plays. Then "Key Figures" with the three counters. */
 export default function Hero({ ready }: { ready: boolean }) {
   const root = useRef<HTMLElement>(null);
+  const video = useRef<HTMLVideoElement>(null);
 
   useGSAP(() => {
     const q = gsap.utils.selector(root);
-    const after = [...q(".hero-sub"), ...q(".scroll-hint"), ...q(".hero-corner-mark"), ...q(".hero-film"), ...q(".hero-mockup")];
-    if (!ready) { gsap.set(after, { opacity: 0 }); return; }
-    const tl = gsap.timeline();
-    tl.fromTo(q(".hero-sub"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.8 }, 0.7)
-      .to([...q(".scroll-hint"), ...q(".hero-corner-mark")], { opacity: 1, duration: 0.6 }, 1);
-    if (site.heroMockup) {
-      tl.fromTo(q(".hero-film"), { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3)
-        .fromTo(q(".hero-mockup"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 1.4 }, 0.5);
-      // the mockup drifts up a touch faster than the page as you leave the hero
-      gsap.to(q(".hero-mockup"), { y: -80, ease: "none", scrollTrigger: { trigger: root.current, start: "top top", end: "bottom top", scrub: true } });
-    }
-    ScrollTrigger.refresh();
+    const [h1] = q(".hero_h1"), [p] = q(".hero_subline");
+    if (!ready) { gsap.set([h1, p], { opacity: 0, y: 30 }); return; }
+    gsap.to(h1, { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.1 });
+    gsap.to(p, { opacity: 1, y: 0, duration: 1, ease: "power3.out", delay: 0.3 });
   }, { scope: root, dependencies: [ready] });
 
+  useGSAP(() => {
+    const el = root.current; if (!el) return;
+    const q = gsap.utils.selector(root);
+    const screen = q(".hero_lottie")[0], laptop = q(".leptop")[0];
+    // the lid opens: from the tilted, shrunken screen in the laptop to a flat, near full-width dashboard.
+    // The live site uses different distances per breakpoint (measured): desktop 560px, tablet 390px,
+    // phones start 50px down and open over ~250px with a steeper, less shrunken lid.
+    const mm = gsap.matchMedia();
+    mm.add({ desktop: "(min-width: 992px)", tablet: "(min-width: 768px) and (max-width: 991px)", mobile: "(max-width: 767px)" }, (ctx) => {
+      const { mobile, tablet } = ctx.conditions as { mobile: boolean; tablet: boolean };
+      const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: mobile ? 50 : 0, end: "+=" + (mobile ? 285 : tablet ? 390 : 560), scrub: true } });
+      if (mobile) {
+        tl.fromTo(screen, { y: "-2.9rem", scaleX: 0.92, scaleY: 0.9, rotateX: -53 }, { y: "9.1rem", scaleX: 1, scaleY: 1, rotateX: 0, ease: "none", duration: 250 / 285 }, 0)
+          .fromTo(laptop, { y: "0rem" }, { y: "-4.56rem", ease: "none", duration: 1 }, 0);
+      } else {
+        tl.fromTo(screen, { y: "-17rem", scaleX: 0.7, scaleY: 0.35, rotateX: -27 }, { y: "9rem", scaleX: 0.8, scaleY: 0.8, rotateX: 0, ease: "none" }, 0)
+          .fromTo(laptop, { y: "0rem" }, { y: "-30rem", ease: "none" }, 0);
+      }
+    });
+    // the video starts on the first scroll, plays through, holds its last frame a second, then restarts
+    const v = video.current;
+    if (v) {
+      v.loop = false; v.pause();
+      let played = false;
+      const st = ScrollTrigger.create({ start: 1, onEnter: () => { if (!played) { played = true; v.play().catch(() => {}); } } });
+      const onEnded = () => setTimeout(() => { v.currentTime = 0; v.play().catch(() => {}); }, 1000);
+      v.addEventListener("ended", onEnded);
+      return () => { st.kill(); v.removeEventListener("ended", onEnded); };
+    }
+  }, { scope: root });
+
   return (
-    <section className={`hero${site.heroMockup ? " hero-with-mockup" : ""}`} id="top" ref={root}>
-      {site.heroMockup && <a className="hero-film" href="#film"><Play size={9} strokeWidth={2.5} /> Watch the film</a>}
-      {ready ? (
-        <SplitText tag="h1" className="hero-title" text={TITLE} splitType="words" effect="blur" trigger="load" delay={80} duration={1} textAlign="center" />
-      ) : (
-        <h1 className="hero-title" style={{ visibility: "hidden" }}>{TITLE}</h1>
-      )}
-      <p className="hero-sub">{site.name} connects traders and investors with analytics,<br />verified performance, and new opportunities.</p>
-      {site.heroMockup && <div className="hero-mockup"><Laptop view="front" /></div>}
-      <a className="scroll-hint" href="#experience" aria-label="Scroll down"><ArrowDown size={12} strokeWidth={2} /></a>
-      <img className="hero-corner-mark" src="/assets/oversite-mark-black.png" alt="" />
+    <section className="section_hero" id="top" ref={root}>
+      <a href="#scrin" className="btn-arrow-btm hide-tablet w-inline-block"><img src="/al/Arrow_Icon.svg" loading="lazy" alt="" className="arrow-icon" /></a>
+      <div className="hero_icon hide-tablet"><Mark /></div>
+      <div className="padding-global is-100">
+        <div className="container-large is-100">
+          <div className="hero_content">
+            <div className="w-layout-vflex hero_h">
+              <h1 className="hero_h1">Discover Investments.<br />Improve Performance.<br />Get Funded.</h1>
+              <div className="p-40 text-color-secondary hero_subline">{site.name} is the worlds first performance network for serious traders. Turning performance into opportunity. </div>
+            </div>
+            <div className="hero_leptop-wrap">
+              <div className="hero_lottie-wrap is-video">
+                <div className="hero_lottie is-video w-background-video w-background-video-atom">
+                  <video ref={video} muted playsInline preload="auto" poster="/video/Hom_poster.0000000.jpg" style={{ backgroundImage: "url(/video/Hom_poster.0000000.jpg)" }}>
+                    <source src="/video/Hom_mp4.mp4" type="video/mp4" />
+                    <source src="/video/Hom_webm.webm" type="video/webm" />
+                  </video>
+                </div>
+              </div>
+              <img src="/al/lep.webp" loading="eager" alt="" className="leptop" />
+            </div>
+          </div>
+          <div className="w-layout-vflex hero_h-btm">
+            <div className="hero-h-wrap"><Split as="h3" className="heading">Key Figures</Split></div>
+            <div className="div-block-3" />
+            <div className="w-layout-grid hero_statistics">
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={12} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Accounts</div></div>
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={1.8} decimals={1} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Pro Traders</div></div>
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={990} className="hero_number counter" /><div className="hero_number">M+</div></div><div>Trading Capital</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="scrin" className="hero_trigger" />
     </section>
   );
 }
