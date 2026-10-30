@@ -2,6 +2,7 @@ node_modules/
 .next/
 out/
 out-relative/
+out-artifact/
 *.log
 .DS_Store
 *.tsbuildinfo

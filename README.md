@@ -38,6 +38,12 @@ npm run build:relative
 
 `out-relative/` is the same site with page-relative paths, for hosting under a sub-path or opening from a folder.
 
+```bash
+npm run build:artifact
+```
+
+`out-artifact/` additionally moves Next's `_next` folder under `n/`, for hosts that reserve top-level names starting with an underscore.
+
 ## Switches
 
 `src/config/site.ts`

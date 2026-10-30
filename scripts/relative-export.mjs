@@ -5,12 +5,18 @@
 //   runtime loads further chunks relative to the page too.
 // - CSS: font urls become relative to the stylesheet.
 // - JS: only image/favicon paths are rewritten (they end up in src attributes, resolved against the page).
-import { cpSync, readdirSync, readFileSync, writeFileSync, statSync, rmSync } from "node:fs";
+import { cpSync, readdirSync, readFileSync, writeFileSync, statSync, rmSync, renameSync, mkdirSync } from "node:fs";
 import { join, relative, dirname, extname } from "node:path";
 
-const SRC = "out", DST = "out-relative";
+// `node scripts/relative-export.mjs --next-dir n/_next` also moves the _next folder, for hosts that reserve
+// top-level names starting with an underscore. (The Next runtime requires a "/_next/" segment in the path, so
+// nest it rather than rename it.)
+const args = process.argv.slice(2);
+const NEXT_DIR = args.includes("--next-dir") ? args[args.indexOf("--next-dir") + 1] : "_next";
+const SRC = "out", DST = args.includes("--out") ? args[args.indexOf("--out") + 1] : "out-relative";
 rmSync(DST, { recursive: true, force: true });
 cpSync(SRC, DST, { recursive: true });
+if (NEXT_DIR !== "_next") { mkdirSync(dirname(join(DST, NEXT_DIR)), { recursive: true }); renameSync(join(DST, "_next"), join(DST, NEXT_DIR)); }
 
 const walk = (dir) => readdirSync(dir).flatMap((f) => { const p = join(dir, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 let touched = 0;
@@ -21,12 +27,12 @@ for (const file of walk(DST)) {
   const before = s;
   if (ext === ".css") {
     const up = relative(dirname(file), DST).replace(/\\/g, "/");
-    s = s.replace(/url\((['"]?)\/_next\//g, `url($1${up}/_next/`);
+    s = s.replace(/url\((['"]?)\/_next\//g, `url($1${up}/${NEXT_DIR}/`);
   } else if (ext === ".js") {
     s = s.replace(/(["'])\/(assets)\//g, "$1$2/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
   } else {
-    s = s.replace(/(["'(])\/(_next|assets)\//g, "$1$2/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
-    if (ext === ".html") s = s.replace("<head>", '<head><script>self.TURBOPACK_CHUNK_BASE_PATH="_next/"</script>');
+    s = s.replace(/(["'(])\/_next\//g, `$1${NEXT_DIR}/`).replace(/(["'(])\/assets\//g, "$1assets/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
+    if (ext === ".html") s = s.replace("<head>", `<head><script>self.TURBOPACK_CHUNK_BASE_PATH="${NEXT_DIR}/"</script>`);
   }
   if (s !== before) { writeFileSync(file, s); touched++; }
 }

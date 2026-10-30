@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "vendor-check": "node -e \"console.log(Object.keys(require('./package.json').dependencies))\"",
-    "build:relative": "next build && node scripts/relative-export.mjs"
+    "build:relative": "next build && node scripts/relative-export.mjs",
+    "build:artifact": "next build && node scripts/relative-export.mjs --next-dir n/_next --out out-artifact"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
