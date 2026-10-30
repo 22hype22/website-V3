@@ -50,6 +50,11 @@ The repo carries the same Railway setup as the Oversite CAD repo: `railway.json`
 Node 22 (`npm ci`, `npm run build`) and start `node server.mjs`, which serves the static export from `out/` on
 `PORT` and answers `/health` for the healthcheck. Connect the GitHub repo to a Railway service and every push deploys.
 
+## GitHub Pages
+
+`.github/workflows/pages.yml` builds the page-relative export and publishes it to GitHub Pages on every push, so the
+site can be viewed straight from GitHub at the repository's Pages URL.
+
 ## Claude Code setup
 
 `.claude/` (skills, agents, settings), `.agents/`, `.mcp.json`, `skills-lock.json` and `claudex.toml` are copied
