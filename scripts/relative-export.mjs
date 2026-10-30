@@ -30,6 +30,7 @@ for (const file of walk(DST)) {
     s = s.replace(/url\((['"]?)\/_next\//g, `url($1${up}/${NEXT_DIR}/`);
   } else if (ext === ".js") {
     s = s.replace(/(["'])\/(assets)\//g, "$1$2/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
+    s = s.replace(/\uFFFD/g, "\\uFFFD"); // some hosts reject the literal replacement character; the escape is equivalent
   } else {
     s = s.replace(/(["'(])\/_next\//g, `$1${NEXT_DIR}/`).replace(/(["'(])\/assets\//g, "$1assets/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
     if (ext === ".html") s = s.replace("<head>", `<head><script>self.TURBOPACK_CHUNK_BASE_PATH="${NEXT_DIR}/"</script>`);
