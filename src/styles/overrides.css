@@ -104,7 +104,7 @@ html.lenis, html.lenis body { height: auto; }
   .navbar.is-open { border-radius: 1.6rem; }
   .navbar.is-open .nav-components { flex-wrap: wrap; }
   .nav-link, .nav-link.is-mb, .nav-link.is-mb.w--current { color: var(--base-color-brand--black); }
-  .nav_menu-text { color: rgba(18, 18, 18, 0.45); }
+  .nav_menu-text { display: none; }
 }
 .link-wrapper .hover-line { transform: translateX(-100%); transition: transform .4s cubic-bezier(.22,1,.36,1); }
 .link-wrapper:hover .hover-line { transform: translateX(0); }
