@@ -11,6 +11,7 @@ import Hero from "./Hero";
 import Get from "./Get";
 import Products from "./Products";
 import CardsMobile from "./CardsMobile";
+import Build from "./Build";
 import Perfom from "./Perfom";
 import Faq from "./Faq";
 import Stay from "./Stay";
@@ -98,6 +99,7 @@ export default function Site() {
           <Get />
           <Products />
           <CardsMobile />
+          <Build />
           <Perfom />
           <Faq />
           <Stay />
