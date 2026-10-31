@@ -17,7 +17,6 @@ import Discover from "./Discover";
 import More from "./More";
 import Faq from "./Faq";
 import Stay from "./Stay";
-import Blog from "./Blog";
 import Footer from "./Footer";
 import LegalBar from "./LegalBar";
 import Cursor from "./Cursor";
@@ -77,7 +76,6 @@ export default function Site() {
           <More />
           <Faq />
           <Stay />
-          <Blog />
           <Footer />
           <LegalBar />
         </main>

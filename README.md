@@ -5,7 +5,7 @@ loading screen, hero with the laptop lid opening on scroll, Key Figures counters
 (three cards sliding across, the badge growing into the "Full Power" bento as the page turns black), Supported
 Platforms, the GPU board riding in under "Powered by Industry Grade", Why Oversite with the chart animations,
 pricing with the monthly/yearly toggle and Additional Solutions, More about us, FAQ accordion, Stay Ahead, the
-news slider and the footer with the giant wordmark.
+closing call to action and the footer with a legal bar that sticks to the bottom of the screen.
 
 Every scroll curve (start, length, easing, breakpoints) was measured off the live page with Playwright and
 reproduced in GSAP, so the two scroll the same at 1440, 768 and 390 wide.
@@ -17,7 +17,7 @@ reproduced in GSAP, so the two scroll the same at 1440, 768 and 390 wide.
 - GSAP 3.15 with every plugin registered in `src/lib/gsap.ts` (ScrollTrigger, SplitText, TextPlugin, DrawSVG, CustomEase, …) and the `useGSAP` hook
 - Lenis for smooth scrolling (lerp .1, wheel multiplier .7, like the live site), ticking inside GSAP and feeding ScrollTrigger
 - Motion for in-view triggers
-- lottie-web for the live site's Lottie charts, Swiper for the news slider
+- lottie-web for the live site's Lottie charts
 - React Bits `SplitText` (installed through both `shadcn` and `jsrepo`, in `src/components/SplitText.jsx`), available for headings
 - Lucide icons
 
@@ -78,8 +78,7 @@ is then served at the repository's Pages URL.
 
 All copy, links, prices and FAQs come from the Oversite content handover (managed Discord bots, the fleet, pricing,
 ER:LC bots, the process). The dashboard videos and laptop screenshots in the hero and fleet cards are still the
-reference site's own and carry its mark; swap them for Oversite material in `public/video` and `public/al`. The fleet
-slider cards in `public/assets/fleet-*.svg` are simple generated placeholders until real bot art is dropped in.
+reference site's own and carry its mark; swap them for Oversite material in `public/video` and `public/al`.
 
 ## Claude Code setup
 
