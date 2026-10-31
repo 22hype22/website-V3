@@ -56,9 +56,9 @@ export default function Products() {
                     <div className="w-layout-vflex products_c-text">
                       <img src="/al/Product_Icon.svg" loading="lazy" alt="" className="products_icon-card" />
                       <div className="products_c-btm">
-                        <Split className="products_card-title">Protection</Split>
-                        <div>Stops raids before they ever land. Auto-moderation, verification<br />and a real-time threat shield, always on.</div>
-                        <div className="products_wrap-btn"><a href={site.botsUrl} className="button is-white w-button">Explore Protection</a></div>
+                        <Split className="products_card-title">Roleplay</Split>
+                        <div>Everything an ER:LC roleplay community runs on. Tickets, Roblox<br />verification and rank sync, logs, giveaways, music and economy.</div>
+                        <div className="products_wrap-btn"><a href={site.botsUrl} className="button is-white w-button">Explore Roleplay</a></div>
                       </div>
                     </div>
                     <div className="products_img-1">
@@ -79,8 +79,8 @@ export default function Products() {
                     <div className="w-layout-vflex products_c-text is-2">
                       <img src="/al/p.svg" loading="lazy" alt="" className="products_icon-card" />
                       <div className="products_c-btm">
-                        <div className="products_card-title">Support</div>
-                        <div>Turns the chaos into clean tickets: routing, transcripts<br />and staff tools so nothing slips through.</div>
+                        <div className="products_card-title">Dispatch</div>
+                        <div>An AI voice dispatcher that reads 911 calls aloud and talks back. Nearest-unit dispatch, officer-down alerts, BOLOs.</div>
                       </div>
                     </div>
                     <img src="/al/c-bg.svg" loading="lazy" alt="" className="products_bg is-2" />
