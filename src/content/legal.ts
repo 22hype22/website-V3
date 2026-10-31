@@ -1,0 +1,152 @@
+/* The three policies, in plain language. Drafted from the business facts in the content handover (sole
+   proprietorship in Minnesota, one-time bots plus hosting, Robux pricing, refund review, arbitration and so on).
+   Review before relying on it: this is a draft, not legal advice. */
+
+export type LegalDoc = {
+  slug: string;
+  file: string;
+  title: string;
+  blurb: string;
+  sections: { h: string; p: string[] }[];
+};
+
+export const EFFECTIVE = "October 5, 2026";
+export const ENTITY = "Oversite, a sole proprietorship in Minnesota, United States";
+
+export const LEGAL: LegalDoc[] = [
+  {
+    slug: "privacy",
+    file: "privacy.html",
+    title: "Privacy Policy",
+    blurb: "What we collect, why, who sees it, how long we keep it, and the rights you have over it.",
+    sections: [
+      { h: "Who we are", p: [
+        `${ENTITY} ("Oversite", "we", "us"). We build and host Discord bots and the dashboard you manage them from. This policy covers oversite.shop, the dashboard, the bots, and the help assistant on this site.`,
+        "Questions about this policy go to support@oversite.shop.",
+      ] },
+      { h: "What we collect", p: [
+        "Account details: your email address, your Discord account id, username and avatar when you sign in with Discord, and your Roblox username and id if you link Roblox to pay in Robux or verify members.",
+        "Order details: what you bought, when, how you paid, and the name, icon, banner, description and status you give your bot. Card details go straight to Stripe; we never see or store your card number.",
+        "Server data your bots need to work: server ids, channel and role ids, member ids, the messages and events the parts you picked act on (tickets, logs, infractions, applications, verification), and the settings you save in the dashboard.",
+        "Support: the messages you send us by email, in Discord, or to the assistant on this site.",
+        "Technical data: IP address, browser and device type, pages visited and when, collected through ordinary server logs and used to keep the service running and secure.",
+      ] },
+      { h: "Why we use it", p: [
+        "To run your bots and the dashboard, to take payment and keep a record of it, to answer support, to keep the service safe from abuse, and to tell you about changes to your order, your bots or these terms.",
+        "We do not sell your data and we do not use it for advertising.",
+      ] },
+      { h: "Who sees it", p: [
+        "Service providers who process data for us, and only for that purpose: Supabase and Railway (hosting and databases), Stripe (card payments), Roblox (Robux payments), Discord (the platform the bots run on), Anthropic (Claude, for the support assistant, screening and the Dispatch voice), Google Gemini (translation) and Google, Microsoft and ElevenLabs (speech).",
+        "Server owners and the staff they choose see the data their own bot collects in their own server, through the dashboard.",
+        "We share data with authorities when the law requires it, and with a buyer if Oversite is ever sold, under this same policy.",
+      ] },
+      { h: "How long we keep it", p: [
+        "Account and order records stay while you have an account and for as long as tax and payment rules require afterwards.",
+        "Bot data stays while the bot is on your account. When a bot is removed or cancelled, its data is deleted within 30 days, except logs a server owner has exported themselves.",
+        "Server logs and technical data are kept for up to 90 days.",
+      ] },
+      { h: "Your rights", p: [
+        "You can see, correct, export or delete your account data at any time by emailing support@oversite.shop from the address on your account. Deleting your account removes your bots.",
+        "If you live somewhere with privacy laws that give you more rights (the EU, UK, California and others), those rights apply and we will honour them.",
+      ] },
+      { h: "Children", p: [
+        "You must be 13 or older to use Oversite, in line with Discord's own rules. If you are under 18, a parent or guardian must agree to these terms and make any purchase for you. If we learn we hold data from a child under 13, we delete it.",
+      ] },
+      { h: "Security", p: [
+        "Data is encrypted in transit and at rest with our hosting providers. Access inside Oversite is limited to what is needed to run the service and answer support. No system is perfectly secure, so tell us straight away at support@oversite.shop if you think your account has been misused.",
+      ] },
+      { h: "Changes", p: [
+        `We may update this policy. The date at the top shows the current version. If a change matters to how we use your data, we will tell you in the dashboard or by email before it takes effect.`,
+      ] },
+    ],
+  },
+  {
+    slug: "terms",
+    file: "terms.html",
+    title: "Terms of Use",
+    blurb: "The agreement between you and Oversite for the website, the dashboard and the bots.",
+    sections: [
+      { h: "The agreement", p: [
+        `These terms are a contract between you and ${ENTITY}. They cover oversite.shop, the dashboard, every bot we build or host for you, and the help assistant on this site. By creating an account, buying a bot, or adding one to a server, you accept them.`,
+      ] },
+      { h: "Your account", p: [
+        "You need to be 13 or older. Under 18, a parent or guardian must agree to these terms and make any purchase for you.",
+        "You sign in with Discord. Keep that account secure: everything done from it counts as done by you. Tell us at once if you think someone else is using it.",
+        "One person, one account. Accounts cannot be sold or transferred, though a bot can be sent as a gift at checkout.",
+      ] },
+      { h: "What you are buying", p: [
+        "Discord bots are sold for a one-time fee plus managed hosting, billed monthly: one bot is $5 a month, two bots are $10 a month, and the third bot's hosting is free. ER:LC and Roblox bots are a one-time fee and hosted free. Add-ons are currently included at no charge.",
+        "A custom build gives you the parts you picked and updates to those parts. New parts and features released later are not included; you can add them to your bot at their listed price.",
+        "You get a licence to use the bot in your own servers while it is on your account. The code, the dashboard and the Oversite name stay ours. You may not copy, resell, reverse engineer or re-host a bot, or pass it off as your own work.",
+      ] },
+      { h: "Paying", p: [
+        "Card payments go through Stripe. Your payment method is checked when you place the order and charged when your build starts. Monthly hosting is charged on the same day each month to the same card.",
+        "Payment plans carry a 15% plan fee (orders placed before October 25, 2026 had no fee). A payment left unpaid for 3 days removes the bot until it is settled.",
+        "Robux prices are the dollar price plus 30% for Roblox's cut, at 100 Robux per dollar, rounded up to end in 999. Robux purchases are made through the Oversite Customs group on Roblox, as a game pass or group store item made for your order, and count as paid once Roblox records the sale.",
+      ] },
+      { h: "Hosting and uptime", p: [
+        "We host your bots and keep them online around the clock. If a bot of yours is down for 3 or more consecutive days for reasons on our side, you get a hosting credit for that month.",
+        "Discord rate limits apply to every bot. A bot carrying many busy parts in a large server may be slowed by them; we say so in the builder, and splitting parts across two bots is the fix.",
+      ] },
+      { h: "Using the bots", p: [
+        "You must follow Discord's Terms of Service and Community Guidelines, Roblox's rules where they apply, and the law. Do not use a bot to harass, spam, scrape, evade bans, or collect data you have no right to.",
+        "You are responsible for how your staff use the bot in your server and for the settings you choose in the dashboard.",
+        "We can suspend or remove a bot that is being misused, that puts other customers or Oversite at risk, or that Discord asks us to remove. We will tell you why where we can.",
+      ] },
+      { h: "Cancelling", p: [
+        "You can cancel hosting or remove a bot from the dashboard at any time. A cancel can be undone within 30 seconds; after that the bot goes offline and its data is deleted within 30 days. One-time fees are not refunded on cancellation; see the Sales and Refund Policy for when a refund is possible.",
+      ] },
+      { h: "AI features", p: [
+        "Some parts use AI: the help assistant on this site, screening, Dispatch's voice and the staff trainer. AI output can be wrong. Check anything that matters, and do not rely on an AI part for emergencies or decisions with real-world consequences. AI usage is included in the part's price unless a plan says otherwise.",
+      ] },
+      { h: "Support", p: [
+        "Support is by email at support@oversite.shop, in the Oversite Discord in #dashboard using the Need assistance button, or through the assistant on this site. We aim to reply within 24 to 48 hours.",
+      ] },
+      { h: "Liability", p: [
+        "Oversite is provided as it is. To the extent the law allows, we are not liable for lost revenue, lost data, or indirect damage, and our total liability to you for anything connected to these terms is limited to what you paid us in the 12 months before the claim. Nothing here limits liability that the law does not let us limit.",
+      ] },
+      { h: "Disputes", p: [
+        "These terms are governed by the laws of Minnesota, United States. Any dispute we cannot settle between us is resolved by individual arbitration with the American Arbitration Association, not in court and not as a class. You can opt out of arbitration by emailing support@oversite.shop within 30 days of first accepting these terms.",
+      ] },
+      { h: "Changes", p: [
+        `We may change these terms. The date at the top is the current version. For changes that affect you materially we give notice in the dashboard or by email before they apply; continuing to use Oversite after that means you accept them.`,
+      ] },
+    ],
+  },
+  {
+    slug: "refunds",
+    file: "refunds.html",
+    title: "Sales & Refund Policy",
+    blurb: "What you are buying, how and when you are charged, how to cancel, and when you can get a refund.",
+    sections: [
+      { h: "What you are buying", p: [
+        "A bot is a one-time purchase that stays on your account. Discord bots also carry managed hosting, billed monthly (one bot $5, two bots $10, the third bot's hosting free). ER:LC and Roblox bots are hosted free. A custom build includes the parts you picked and updates to them, not parts released later.",
+        "Final pricing depends on scope. We confirm your order before any work begins, so nothing is charged until the build starts.",
+      ] },
+      { h: "When you are charged", p: [
+        "Your card is checked when you place the order and charged when your build starts. This locks your place in the build queue. Hosting is charged monthly from the day your bot goes live.",
+        "On a payment plan, the first payment is taken when the build starts and the rest on the same day each month, with a 15% plan fee on the total. A payment left unpaid for 3 days removes the bot until it is settled.",
+        "Robux orders are paid on Roblox through the Oversite Customs group and count as paid the moment Roblox records the sale.",
+      ] },
+      { h: "Cancelling", p: [
+        "Cancel hosting or remove a bot from the dashboard at any time. You have 30 seconds to undo a cancel. After that the bot goes offline at the end of the paid period and its data is deleted within 30 days.",
+        "Cancelling stops future hosting charges. It does not refund the one-time fee or the current month of hosting.",
+      ] },
+      { h: "Refunds", p: [
+        `Since ${EFFECTIVE} there is no automatic refund guarantee. Instead, every refund request gets a review: email support@oversite.shop within 14 days of the purchase and tell us what went wrong. We will reply within 24 to 48 hours and, where the bot has not delivered what was sold, refund in full or in part.`,
+        "Refunds go back to the original payment method. Card refunds usually show within 5 to 10 business days.",
+        "Robux refunds are 70% of the Robux paid, because Roblox keeps 30% of every sale. They are paid to the linked Roblox account, which must have been in our Roblox group for at least 14 days.",
+        "Hosting is not refunded for time already used. If a bot of yours is down for 3 or more consecutive days because of us, that month's hosting is credited.",
+      ] },
+      { h: "What we do not refund", p: [
+        "A bot that works as described but you have changed your mind about after 14 days. Charges for misuse or for a bot removed for breaking the Terms of Use. Payment-plan fees once a plan has started. Gift purchases, except where the bot itself was faulty.",
+      ] },
+      { h: "Gifts", p: [
+        "A bot bought as a gift moves to the recipient's account the moment it is paid for and leaves yours. Refund requests for a gift come from the buyer, and the refund goes to the buyer's payment method.",
+      ] },
+      { h: "Questions", p: [
+        "Email support@oversite.shop, or use the Need assistance button in #dashboard on our Discord. Nothing in this policy limits rights you have under the consumer law where you live.",
+      ] },
+    ],
+  },
+];

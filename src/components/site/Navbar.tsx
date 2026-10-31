@@ -9,7 +9,10 @@ import { Brand } from "./primitives";
 const LINKS = site.nav;
 
 /* Fixed navigation. Hides while scrolling down, returns on the way up. On phones the menu button opens the stack. */
-export default function Navbar({ ready }: { ready: boolean }) {
+/* in-page links are written for the home page; from any other page they go home first */
+export const rel = (href: string, sub: boolean) => (href === "/" ? "./" : sub && href.startsWith("#") ? "./" + href : href);
+
+export default function Navbar({ ready, sub = false }: { ready: boolean; sub?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
@@ -52,7 +55,7 @@ export default function Navbar({ ready }: { ready: boolean }) {
                     <div className="nav_menu-text">Menu</div>
                     {LINKS.map((item, i) => item === "|" ? <div className="nav-divider" aria-hidden="true" key={"divider" + i} /> : (
                       <div className="link-wrapper" key={item[1]}>
-                        <a href={item[0]} className={`nav-link${i === 0 ? " w--current" : ""}`} onClick={() => setOpen(false)} {...(item[0].startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>{item[1]}</a>
+                        <a href={rel(item[0], sub)} className={`nav-link${i === 0 && !sub ? " w--current" : ""}`} onClick={() => setOpen(false)} {...(item[0].startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>{item[1]}</a>
                         <div className="hover-line" />
                       </div>
                     ))}

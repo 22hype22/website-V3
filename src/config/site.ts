@@ -22,9 +22,9 @@ export const site = {
   processUrl: "https://www.oversite.shop/process",
   erlcUrl: "https://www.oversite.shop/erlc-design",
   legal: {
-    privacy: "https://www.oversite.shop/legal/privacy-policy",
-    terms: "https://www.oversite.shop/legal/terms-of-use",
-    refunds: "https://www.oversite.shop/legal/sales-and-refunds",
+    privacy: "privacy.html",
+    terms: "terms.html",
+    refunds: "refunds.html",
   },
   /* Optional: a server that answers the help chat (POST { messages } -> { reply }). Empty = built-in answers. */
   assistantEndpoint: "",

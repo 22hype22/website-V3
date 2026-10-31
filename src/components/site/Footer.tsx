@@ -2,12 +2,13 @@
 
 import { site } from "@/config/site";
 import { Brand } from "./primitives";
+import { rel } from "./Navbar";
 
 const LINKS: [string, string, string?][] = [["/", "Home", "w--current"], ["#process", "Our Process"], ["#fleet", "Discord"], [site.botsUrl, "ER:LC"], [site.botsUrl, "FiveM"], ["#faq", "FAQ"]];
 
 /* The footer: link column, centred brand with the Discord, TikTok and YouTube icons, and back-to-top. The legal line below it is
    its own component (LegalBar) so it can stick to the bottom of the screen. */
-export default function Footer() {
+export default function Footer({ sub = false }: { sub?: boolean }) {
   return (
     <div id="contact" className="section_footer">
       <div className="padding-global">
@@ -16,7 +17,7 @@ export default function Footer() {
             <div className="w-layout-vflex footer_menu">
               {LINKS.map(([href, label, cur]) => (
                 <div className="link-wrapper" key={label}>
-                  <a href={href} className={`nav-link is-footer${cur ? " " + cur : ""}`}>{label}</a>
+                  <a href={rel(href, sub)} className={`nav-link is-footer${cur && !sub ? " " + cur : ""}`}>{label}</a>
                   <div className="hover-line" />
                 </div>
               ))}
