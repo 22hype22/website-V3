@@ -131,6 +131,10 @@ html.lenis, html.lenis body { height: auto; }
 @media screen and (max-width: 767px) { .footer_text { font-size: 27vw; } }
 @media screen and (max-width: 479px) { .footer_text { font-size: 22vw; } }
 
+/* ───────── process grid: icons, titles and step numbers in white (the live site kept them near-black until hovered) ───────── */
+.cards_icon, .cards_title, .cards_top, .cards_bottom { color: #ffffff; }
+.cards_top > div:not(.cards_icon), .cards_bottom > div:not(.cards_btm) { color: rgba(255, 255, 255, 0.7); }
+
 /* ───────── odds and ends ───────── */
 .perfom_img { display: block; }
 .perfom_img.is-color { position: absolute; inset: 0; }
@@ -141,14 +145,14 @@ html.no-js [data-fade] { opacity: 1; }
 /* ───────── badge cards: the live SVG with its wordmark removed, our name and mark laid on top ───────── */
 .badge-card { display: block; }
 .badge-card > img:first-child { width: 100%; height: 100%; display: block; object-fit: contain; }
-.badge-card .badge-name { position: absolute; left: 9%; top: 9%; color: #fff; font-size: 7.5%; font-weight: 500; letter-spacing: -0.01em; }
+.badge-card .badge-name { position: absolute; left: 9%; top: 8%; color: #fff; font-size: 7.5%; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }
 .badge-card .badge-mark { position: absolute; right: 21%; bottom: 10%; width: 11%; height: auto; }
-.products_img-3 .badge-name { font-size: 1rem; }
-.products_img-3-mb .badge-name { font-size: 0.8rem; }
+.products_img-3 .badge-name { font-size: 1.2rem; }
+.products_img-3-mb .badge-name { font-size: 1.1rem; }
 /* the Webflow sheet decides which badge shows where: the big one on desktop, the small one on phones */
 .products_img-3-mb.badge-card { display: none; }
 @media screen and (max-width: 991px) { .products_img-3.badge-card { display: none; } }
 @media screen and (max-width: 479px) { .products_img-3-mb.badge-card { display: inline-flex; } }
 .badge-card.is-center { position: relative; width: 100%; height: 100%; }
-.badge-card.is-center .badge-name { left: 10%; top: 10.5%; font-size: 1.65rem; }
+.badge-card.is-center .badge-name { left: 10%; top: 9.5%; font-size: 2.7rem; }
 .badge-card.is-center .badge-mark { right: 20%; bottom: 10%; width: 2.6rem; }

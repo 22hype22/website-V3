@@ -27,6 +27,7 @@ export default function Products() {
       .fromTo(".products_img-2.is-on", { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.1 }, 0.14)
       // the badge grows and travels down out of the third card into the centre slot of the bento below
       .fromTo(".products_img-3", { width: "13rem", height: "13rem", left: "19.94rem", y: "0rem" }, { width: "24.5rem", height: "24.5rem", left: "14.19rem", y: "36rem", ease: "none", duration: 0.23 }, 0.458)
+      .fromTo(".products_img-3 .badge-name", { fontSize: "1.2rem" }, { fontSize: "2.5rem", ease: "none", duration: 0.23 }, 0.458)
       .fromTo(section, { backgroundColor: "#ffffff" }, { backgroundColor: "#020202", ease: "none", duration: 0.03 }, 0.65)
       .fromTo(".products_c-content > h5", { color: "#020202" }, { color: "#ffffff", ease: "none", duration: 0.03 }, 0.65)
       .fromTo(".cards_heading", { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.03 }, 0.65)
