@@ -102,13 +102,13 @@ export default function Build() {
               <section className="build_step">
                 <div className="build_step-head"><span className="build_num">2</span><h3>Bot identity</h3></div>
                 <div className="build_uploads">
-                  <label className="build_upload is-banner">
-                    <input type="file" accept="image/png,image/jpeg,image/webp" onChange={(e) => setId({ ...id, banner: toUrl(e.target.files?.[0] ?? null) })} />
-                    {id.banner ? <img src={id.banner} alt="" /> : <span>Upload banner</span>}
-                  </label>
                   <label className="build_upload is-icon">
                     <input type="file" accept="image/png,image/jpeg,image/webp" onChange={(e) => setId({ ...id, icon: toUrl(e.target.files?.[0] ?? null) })} />
                     {id.icon ? <img src={id.icon} alt="" /> : <span>Upload icon</span>}
+                  </label>
+                  <label className="build_upload is-banner">
+                    <input type="file" accept="image/png,image/jpeg,image/webp" onChange={(e) => setId({ ...id, banner: toUrl(e.target.files?.[0] ?? null) })} />
+                    {id.banner ? <img src={id.banner} alt="" /> : <span>Upload banner</span>}
                   </label>
                 </div>
                 <div className="build_hint">PNG/JPG up to 4MB. Icon shows as the bot&apos;s avatar; banner appears at the top of the profile.</div>
