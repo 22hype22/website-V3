@@ -5,7 +5,7 @@ export const site = {
   nav: [
     ["/", "Home"],
     ["#process", "Our Process"],
-    ["#fleet", "Bots"],
+    ["#build", "Bots"],
     "|",
     ["https://www.oversitescad.com/", "CAD"],
   ] as ([string, string] | "|")[],
