@@ -74,12 +74,12 @@ export default function Hero({ ready }: { ready: boolean }) {
             </div>
           </div>
           <div className="w-layout-vflex hero_h-btm">
-            <div className="hero-h-wrap"><Split as="h3" className="heading">Key Figures</Split></div>
+            <div className="hero-h-wrap"><Split as="h3" className="heading">By the Numbers</Split></div>
             <div className="div-block-3" />
             <div className="w-layout-grid hero_statistics">
-              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={100} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Members served</div></div>
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={143} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Members served</div></div>
               <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={1} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Servers</div></div>
-              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={100} className="hero_number counter" /><div className="hero_number">+</div></div><div>Staff</div></div>
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={24} className="hero_number counter" /><div className="hero_number">/7</div></div><div>Staff</div></div>
             </div>
           </div>
         </div>
