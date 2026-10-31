@@ -73,6 +73,7 @@ export default function Assistant({ open, onClose }: { open: boolean; onClose: (
   if (!open || typeof document === "undefined") return null;
   return createPortal(
     <div className={`ast${closing ? " is-closing" : ""}`} role="dialog" aria-modal="true" aria-label={`${site.name} assistant`}>
+      <img className="ast_photo" src="/assets/assistant-bg.webp" alt="" aria-hidden="true" />
       <div className="ast_haze" aria-hidden="true"><i /><i /><i /></div>
 
       <header className="ast_top">
