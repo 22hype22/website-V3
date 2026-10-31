@@ -7,7 +7,7 @@ import { Counter, Mark, Split, useFadeUps } from "./primitives";
 
 /* "THE FLEET — Three Bots. One Server."
    The section is 260rem tall and its inner block is sticky, so the three cards travel sideways with the scroll.
-   Near the end the white background turns black and the four-step process grid scrolls up underneath. */
+   Near the end the background turns dark grey and the four-step process grid scrolls up underneath. */
 export default function Products() {
   const root = useRef<HTMLDivElement>(null);
   const cards = useRef<HTMLDivElement>(null);
@@ -28,8 +28,8 @@ export default function Products() {
       // the badge grows and travels down out of the third card into the centre slot of the bento below
       .fromTo(".products_img-3", { width: "13rem", height: "13rem", left: "19.94rem", y: "0rem" }, { width: "24.5rem", height: "24.5rem", left: "14.19rem", y: "36rem", ease: "none", duration: 0.23 }, 0.458)
       .fromTo(".products_img-3 .badge-name", { fontSize: "1.2rem" }, { fontSize: "2.5rem", ease: "none", duration: 0.23 }, 0.458)
-      .fromTo(section, { backgroundColor: "#ffffff" }, { backgroundColor: "#020202", ease: "none", duration: 0.03 }, 0.65)
-      .fromTo(".products_c-content > h5", { color: "#020202" }, { color: "#ffffff", ease: "none", duration: 0.03 }, 0.65)
+      .fromTo(section, { backgroundColor: "rgba(255,255,255,0)" }, { backgroundColor: "#1c1c1c", ease: "none", duration: 0.03 }, 0.65)
+      .fromTo(".products_c-content > h5", { color: "#1c1c1c" }, { color: "#ffffff", ease: "none", duration: 0.03 }, 0.65)
       .fromTo(".cards_heading", { opacity: 0 }, { opacity: 1, ease: "none", duration: 0.03 }, 0.65)
       .to({}, { duration: 0.32 });
     });
