@@ -5,7 +5,7 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { Counter, Mark, Split, useFadeUps } from "./primitives";
 
-/* "THE FLEET — Three Bots. One Server."
+/* "THE FLEET — Whatever You Play, There's a Bot for It."
    The section is 260rem tall and its inner block is sticky, so the three cards travel sideways with the scroll.
    Near the end the background turns dark grey and the four-step process grid scrolls up underneath. */
 export default function Products() {
@@ -50,16 +50,16 @@ export default function Products() {
                 <div>Scroll</div>
               </div>
               <div className="products_c-content">
-                <Split as="h5">Three Bots. One Server.</Split>
+                <Split as="h5">Whatever You Play, There&apos;s a Bot for It.</Split>
                 <div className="products_cards" ref={cards}>
 
                   <div className="products_c-1">
                     <div className="w-layout-vflex products_c-text">
                       <img src="/al/Product_Icon.svg" loading="lazy" alt="" className="products_icon-card" />
                       <div className="products_c-btm">
-                        <Split className="products_card-title">Roleplay</Split>
-                        <div>Everything an ER:LC roleplay community runs on. Tickets, Roblox<br />verification and rank sync, logs, giveaways, music and economy.</div>
-                        <div className="products_wrap-btn"><a href={site.botsUrl} className="button is-white w-button">Explore Roleplay</a></div>
+                        <Split className="products_card-title">ER:LC</Split>
+                        <div>Built for Emergency Response: Liberty County. Roleplay, Dispatch,<br />Customs, Instructor and Department bots, all run from one dashboard.</div>
+                        <div className="products_wrap-btn"><a href={site.botsUrl} className="button is-white w-button">Explore ER:LC</a></div>
                       </div>
                     </div>
                     <div className="products_img-1">
@@ -80,8 +80,8 @@ export default function Products() {
                     <div className="w-layout-vflex products_c-text is-2">
                       <img src="/al/p.svg" loading="lazy" alt="" className="products_icon-card" />
                       <div className="products_c-btm">
-                        <div className="products_card-title">Dispatch</div>
-                        <div>An AI voice dispatcher that reads 911 calls aloud and talks back. Nearest-unit dispatch, officer-down alerts, BOLOs.</div>
+                        <div className="products_card-title">FiveM</div>
+                        <div>Bots for FiveM communities. Whitelist applications, tickets, staff rosters and live server status, straight from Discord.</div>
                       </div>
                     </div>
                     <img src="/al/c-bg.svg" loading="lazy" alt="" className="products_bg is-2" />
