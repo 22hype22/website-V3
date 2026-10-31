@@ -16,7 +16,7 @@ export default function Get() {
             <div className="get_center">
               <div className="get_icon"><Mark /></div>
               <Split as="h4" effect="animate-1" className="get_h">
-                Managed Discord bots for serious servers. Nothing to host, no tokens to babysit, no code to write.<br />Connect your server, toggle what you need from one dashboard, and go live in under a minute.
+                Fully managed Discord bots built for serious communities. No hosting, coding, or complicated setup required.<br />Connect your server, customize your features, and manage everything through one centralized dashboard. Get up and running in under a minute.
               </Split>
             </div>
             <div />
