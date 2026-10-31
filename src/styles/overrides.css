@@ -135,6 +135,18 @@ html.lenis, html.lenis body { height: auto; }
 .cards_icon, .cards_title, .cards_top, .cards_bottom { color: #ffffff; }
 .cards_top > div:not(.cards_icon), .cards_bottom > div:not(.cards_btm) { color: rgba(255, 255, 255, 0.7); }
 
+/* ───────── legal bar: sticks to the bottom of the viewport, settles under the footer at the end ───────── */
+.legal-bar { position: sticky; bottom: 0; z-index: 1500; background: #ffffff; }
+.legal-bar_row { display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; border-top: 1px solid #0003; padding: 0.95rem 0; font-size: 0.88rem; font-weight: 500; color: #020202; }
+.legal-bar_links { display: flex; gap: 2rem; }
+.legal-bar_links a, .legal-bar_mail { color: inherit; text-decoration: none; transition: opacity .2s; }
+.legal-bar_links a:hover, .legal-bar_mail:hover { opacity: .6; }
+.section_footer { padding-bottom: 2.5rem; }
+@media screen and (max-width: 767px) {
+  .legal-bar_row { flex-wrap: wrap; justify-content: center; gap: 0.25rem 1rem; text-align: center; padding: 0.55rem 0; font-size: 0.74rem; }
+  .legal-bar_links { gap: 0.9rem; flex-wrap: wrap; justify-content: center; }
+}
+
 /* ───────── odds and ends ───────── */
 .perfom_img { display: block; }
 .perfom_img.is-color { position: absolute; inset: 0; }

@@ -1,12 +1,12 @@
 "use client";
 
 import { site } from "@/config/site";
-import { Brand, Split } from "./primitives";
+import { Brand } from "./primitives";
 
-const LINKS: [string, string, string?][] = [["/", "Home", "w--current"], ["#why", "Why Oversite"], ["#process", "Our Process"], ["#fleet", "Bots"], ["#pricing", "Pricing"], [site.erlcUrl, "ER:LC Design"], ["#faq", "FAQ"], [site.legal.privacy, "Privacy Policy"], [site.legal.terms, "Terms of Use"], [site.legal.refunds, "Sales and Refunds"]];
+const LINKS: [string, string, string?][] = [["/", "Home", "w--current"], ["#why", "Why Oversite"], ["#process", "Our Process"], ["#fleet", "Bots"], ["#pricing", "Pricing"], [site.erlcUrl, "ER:LC Design"], ["#faq", "FAQ"]];
 
-/* The footer: link column, centred brand with socials, Launch App and back-to-top, the legal line, and the
-   oversized name whose letters rise in as it scrolls into view. */
+/* The footer: link column, centred brand with the Discord, Deploy now and back-to-top. The legal line below it is
+   its own component (LegalBar) so it can stick to the bottom of the screen. */
 export default function Footer() {
   return (
     <div id="contact" className="section_footer">
@@ -38,13 +38,6 @@ export default function Footer() {
               <a href="#top" className="btn-top w-inline-block"><img src="/al/Arrow_Icon.svg" loading="lazy" alt="" className="arrow-icon" style={{ transform: "rotate(180deg)" }} /></a>
               <div className="link">Not affiliated with Discord Inc.</div>
             </div>
-          </div>
-          <div className="footer_btm">
-            <div className="footer_btm-content">
-              <Split>© {new Date().getFullYear()} {site.name}. All rights reserved.</Split>
-              <a href={`mailto:${site.email}`} className="footer_link is-mail">{site.email}</a>
-            </div>
-            <Split effect="letters-up" className="footer_text">{site.name}</Split>
           </div>
         </div>
       </div>

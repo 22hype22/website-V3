@@ -19,6 +19,7 @@ import Faq from "./Faq";
 import Stay from "./Stay";
 import Blog from "./Blog";
 import Footer from "./Footer";
+import LegalBar from "./LegalBar";
 import Cursor from "./Cursor";
 
 export default function Site() {
@@ -78,6 +79,7 @@ export default function Site() {
           <Stay />
           <Blog />
           <Footer />
+          <LegalBar />
         </main>
       </div>
       <Cursor />
