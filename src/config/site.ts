@@ -4,7 +4,6 @@ export const site = {
   /* Top bar tabs, in order. A "|" entry draws a thin divider; http links open in a new tab. */
   nav: [
     ["/", "Home"],
-    ["#why", "Why Oversite"],
     ["#process", "Our Process"],
     ["#fleet", "Bots"],
     "|",

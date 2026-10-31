@@ -12,9 +12,6 @@ import Get from "./Get";
 import Products from "./Products";
 import CardsMobile from "./CardsMobile";
 import Perfom from "./Perfom";
-import Why from "./Why";
-import Discover from "./Discover";
-import More from "./More";
 import Faq from "./Faq";
 import Stay from "./Stay";
 import Footer from "./Footer";
@@ -71,9 +68,6 @@ export default function Site() {
           <Products />
           <CardsMobile />
           <Perfom />
-          <Why />
-          <Discover />
-          <More />
           <Faq />
           <Stay />
           <Footer />
