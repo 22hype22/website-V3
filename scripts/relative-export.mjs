@@ -32,7 +32,7 @@ for (const file of walk(DST)) {
     const up = relative(dirname(file), DST).replace(/\\/g, "/");
     s = s.replace(/url\((['"]?)\/_next\//g, `url($1${up}/${NEXT_DIR}/`).replace(new RegExp(`url\\((['"]?)/${PUBLIC}/`, "g"), `url($1${up}/$2/`);
   } else if (ext === ".js") {
-    s = s.replace(new RegExp(`(["'])/${PUBLIC}/`, "g"), "$1$2/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
+    s = s.replace(new RegExp(`(["'(])/${PUBLIC}/`, "g"), "$1$2/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
     s = s.replace(/\uFFFD/g, "\\uFFFD"); // some hosts reject the literal replacement character; the escape is equivalent
   } else {
     s = s.replace(/(["'(])\/_next\//g, `$1${NEXT_DIR}/`).replace(new RegExp(`(["'(])/${PUBLIC}/`, "g"), "$1$2/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");
