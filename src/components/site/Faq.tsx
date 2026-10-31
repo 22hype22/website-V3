@@ -19,6 +19,21 @@ export default function Faq() {
   const root = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<number | null>(null);
   const [chat, setChat] = useState(false);
+
+  // "Got something else?": the heading side slides out left and the questions slide out right, then the chat
+  // scene fades in over the page. Closing the chat brings both halves back.
+  const openChat = () => {
+    const left = root.current?.querySelector(".faq_left"), items = root.current?.querySelector(".faq_items");
+    if (!left || !items) { setChat(true); return; }
+    gsap.to(left, { x: -140, opacity: 0, duration: 0.55, ease: "power3.inOut" });
+    gsap.to(items, { x: 140, opacity: 0, duration: 0.55, ease: "power3.inOut", onComplete: () => setChat(true) });
+  };
+  const closeChat = () => {
+    setChat(false);
+    const left = root.current?.querySelector(".faq_left"), items = root.current?.querySelector(".faq_items");
+    if (!left || !items) return;
+    gsap.to([left, items], { x: 0, opacity: 1, duration: 0.7, ease: "power3.out", delay: 0.05 });
+  };
   useFadeUps(root);
 
   useGSAP(() => {
@@ -39,8 +54,8 @@ export default function Faq() {
             <div className="faq_left">
               <Split as="h2">Frequently Asked Questions</Split>
               <div className="faq_sub"><div data-fade>Everything worth knowing before you deploy. Still curious? Ask our assistant anything, in your own words.</div></div>
-              <button type="button" className="button w-button" data-fade onClick={() => setChat(true)}>Got something else?</button>
-              <Assistant open={chat} onClose={() => setChat(false)} />
+              <button type="button" className="button w-button" data-fade onClick={openChat}>Got something else?</button>
+              <Assistant open={chat} onClose={closeChat} />
             </div>
             <div className="w-layout-vflex faq_items">
               {QA.map(([q, a], i) => (
