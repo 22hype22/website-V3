@@ -281,6 +281,15 @@ html.chat-open { overflow: hidden; }
 /* ───────── odds and ends ───────── */
 .perfom_img { display: block; }
 .perfom_img.is-color { position: absolute; inset: 0; }
+/* no pinning or ride-in: the section is one block, headline over the board, on every screen size */
+@media screen and (min-width: 768px) {
+  .section_perfom { height: auto; padding: 8rem 2.5rem 7rem; }
+  .padding-global.is-perfom { position: static; height: auto; }
+  .perfom_content { height: auto; max-width: none; grid-row-gap: 3rem; }
+  .perfom_wrap-scroll { position: relative; left: 0; width: auto; }
+  .perfom_img { height: 36rem; }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) { .perfom_img { height: 30rem; } .perfom_badge { font-size: 0.72rem; padding: 0.55rem 0.65rem; } .section_perfom { padding: 6rem 1.5rem 5rem; } }
 .cookies { display: none; }
 [data-fade] { opacity: 0; }
 html.no-js [data-fade] { opacity: 1; }
