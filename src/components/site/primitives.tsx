@@ -81,7 +81,7 @@ export const LottiePlayer = forwardRef<LottieHandle, { src: string; className?: 
 );
 
 /* ───────────── Brand: the Oversite lockup in place of the AlphaLedger logo files ───────────── */
-export function Brand({ white = false, footer = false, className = "", href = "/" }: { white?: boolean; footer?: boolean; className?: string; href?: string }) {
+export function Brand({ white = false, footer = false, className = "", href = "./" }: { white?: boolean; footer?: boolean; className?: string; href?: string }) {
   return (
     <a href={href} className={`brand-lockup${white ? " is-white" : ""}${footer ? " is-footer" : ""} ${className}`} aria-label="home">
       <img src={white ? "/assets/oversite-mark-white.png" : "/assets/oversite-mark-black.png"} alt="" />
