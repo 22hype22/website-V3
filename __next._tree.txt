@@ -1,7 +1,7 @@
 :HL["_next/static/chunks/1h271xgu1psk1.css","style"]
 :HL["_next/static/chunks/3rn1qf3twwteo.css","style"]
-:HL["_next/static/chunks/2r9ipbbqju0ji.css","style"]
+:HL["_next/static/chunks/0up-1h-mj0qg1.css","style"]
 :HL["_next/static/chunks/19rhlcx2srev9.css","style"]
 :HL["https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap","style"]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"-CtNv1Ay0S5-KMIPcuJ5I","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"4F3e5A4Fnlv4XkWkMLk9t","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
