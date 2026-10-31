@@ -26,17 +26,23 @@ export default function Hero({ ready }: { ready: boolean }) {
     // the lid opens: from the tilted, shrunken screen in the laptop to a flat, near full-width dashboard.
     // The live site uses different distances per breakpoint (measured): desktop 560px, tablet 390px,
     // phones start 50px down and open over ~250px with a steeper, less shrunken lid.
+    // Once the lid is flat, a second stretch of scroll carries the whole dashboard down the page a little
+    // faster than the scroll itself, so it visibly slides down before it is released.
     const mm = gsap.matchMedia();
     mm.add({ desktop: "(min-width: 992px)", tablet: "(min-width: 768px) and (max-width: 991px)", mobile: "(max-width: 767px)" }, (ctx) => {
       const { mobile, tablet } = ctx.conditions as { mobile: boolean; tablet: boolean };
-      const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: mobile ? 50 : 0, end: "+=" + (mobile ? 285 : tablet ? 390 : 560), scrub: true } });
+      const open = mobile ? 285 : tablet ? 390 : 560, pan = mobile ? 260 : tablet ? 360 : 480;
+      // the timeline runs in scroll pixels: one unit of duration is one pixel
+      const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: mobile ? 50 : 0, end: "+=" + (open + pan), scrub: true } });
       if (mobile) {
-        tl.fromTo(screen, { y: "-2.9rem", scaleX: 0.92, scaleY: 0.9, rotateX: -53 }, { y: "9.1rem", scaleX: 1, scaleY: 1, rotateX: 0, ease: "none", duration: 250 / 285 }, 0)
-          .fromTo(laptop, { y: "0rem" }, { y: "-4.56rem", ease: "none", duration: 1 }, 0);
+        tl.fromTo(screen, { y: "-2.9rem", scaleX: 0.92, scaleY: 0.9, rotateX: -53 }, { y: "9.1rem", scaleX: 1, scaleY: 1, rotateX: 0, ease: "none", duration: 250 }, 0)
+          .fromTo(laptop, { y: "0rem" }, { y: "-4.56rem", ease: "none", duration: open }, 0);
       } else {
-        tl.fromTo(screen, { y: "-17rem", scaleX: 0.7, scaleY: 0.35, rotateX: -27 }, { y: "9rem", scaleX: 0.8, scaleY: 0.8, rotateX: 0, ease: "none" }, 0)
-          .fromTo(laptop, { y: "0rem" }, { y: "-30rem", ease: "none" }, 0);
+        tl.fromTo(screen, { y: "-17rem", scaleX: 0.7, scaleY: 0.35, rotateX: -27 }, { y: "9rem", scaleX: 0.8, scaleY: 0.8, rotateX: 0, ease: "none", duration: open }, 0)
+          .fromTo(laptop, { y: "0rem" }, { y: "-30rem", ease: "none", duration: open }, 0);
       }
+      const rest = mobile ? "9.1rem" : "9rem";
+      tl.fromTo(screen, { y: rest }, { y: `calc(${rest} + ${Math.round(pan * 1.2)}px)`, ease: "none", duration: pan, immediateRender: false }, open);
     });
     // the video starts on the first scroll, plays through, holds its last frame a second, then restarts
     const v = video.current;
