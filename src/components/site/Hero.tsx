@@ -41,8 +41,9 @@ export default function Hero({ ready }: { ready: boolean }) {
         tl.fromTo(screen, { y: "-17rem", scaleX: 0.7, scaleY: 0.35, rotateX: -27 }, { y: "9rem", scaleX: 0.8, scaleY: 0.8, rotateX: 0, ease: "none", duration: open }, 0)
           .fromTo(laptop, { y: "0rem" }, { y: "-30rem", ease: "none", duration: open }, 0);
       }
-      const rest = mobile ? "9.1rem" : "9rem";
-      tl.fromTo(screen, { y: rest }, { y: `calc(${rest} + ${Math.round(pan * 1.2)}px)`, ease: "none", duration: pan, immediateRender: false }, open);
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+      const rest = (mobile ? 9.1 : 9) * rem;
+      tl.fromTo(screen, { y: rest }, { y: rest + Math.round(pan * 1.2), ease: "none", duration: pan, immediateRender: false }, open);
     });
     // the video starts on the first scroll, plays through, holds its last frame a second, then restarts
     const v = video.current;
