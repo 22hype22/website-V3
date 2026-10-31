@@ -1,10 +1,14 @@
-# Builds the static site and publishes it to GitHub Pages on every push to these branches.
+# Builds the static site and publishes it to GitHub Pages.
 # The page-relative export is used because Pages serves the site under /website-V3/.
+#
+# The live site is currently published from the gh-pages branch ("Deploy from a branch" in the repository's Pages
+# settings), so this workflow only runs on demand or on pushes to main. To let it publish from a feature branch,
+# allow that branch in the github-pages environment (Settings, Environments) and add it to the list below.
 name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, claude/busy-bardeen-j3he5q]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
