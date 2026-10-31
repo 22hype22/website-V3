@@ -236,6 +236,10 @@ html.chat-open { overflow: hidden; }
   .ast_dock { margin: 0 0.75rem 0.75rem; width: auto; border-radius: 1.6rem; }
 }
 
+/* the last dark block ends on rounded corners before the white FAQ (border-radius only: an overflow clip would break the pinned board) */
+.section_perfom { border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem; }
+@media screen and (max-width: 767px) { .section_perfom { border-bottom-left-radius: 1.25rem; border-bottom-right-radius: 1.25rem; } }
+
 /* ───────── odds and ends ───────── */
 .perfom_img { display: block; }
 .perfom_img.is-color { position: absolute; inset: 0; }
