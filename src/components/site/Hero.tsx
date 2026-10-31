@@ -58,8 +58,8 @@ export default function Hero({ ready }: { ready: boolean }) {
         <div className="container-large is-100">
           <div className="hero_content">
             <div className="w-layout-vflex hero_h">
-              <h1 className="hero_h1">Discover Investments.<br />Improve Performance.<br />Get Funded.</h1>
-              <div className="p-40 text-color-secondary hero_subline">{site.name} is the worlds first performance network for serious traders. Turning performance into opportunity. </div>
+              <h1 className="hero_h1">Powering Communities<br />That Demand More</h1>
+              <div className="p-40 text-color-secondary hero_subline">{site.name} is a leading provider of professional bot, web, and application development, delivering reliable solutions built to work for you.</div>
             </div>
             <div className="hero_leptop-wrap">
               <div className="hero_lottie-wrap is-video">

@@ -6,7 +6,7 @@ import "@/styles/overrides.css";
 
 export const metadata: Metadata = {
   title: "Oversite",
-  description: "Oversite is the world's first performance network for serious traders. Turning performance into opportunity.",
+  description: "Oversite is a leading provider of professional bot, web, and application development, delivering reliable solutions built to work for you.",
   icons: { icon: "/assets/favicon.png" },
 };
 
