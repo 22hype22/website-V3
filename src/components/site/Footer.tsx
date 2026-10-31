@@ -3,7 +3,7 @@
 import { site } from "@/config/site";
 import { Brand } from "./primitives";
 
-const LINKS: [string, string, string?][] = [["/", "Home", "w--current"], ["#process", "Our Process"], ["#fleet", "Bots"], [site.erlcUrl, "ER:LC Design"], ["#faq", "FAQ"]];
+const LINKS: [string, string, string?][] = [["/", "Home", "w--current"], ["#process", "Our Process"], ["#fleet", "Discord"], [site.botsUrl, "ER:LC"], [site.botsUrl, "FiveM"], ["#faq", "FAQ"]];
 
 /* The footer: link column, centred brand with the Discord, TikTok and YouTube icons, and back-to-top. The legal line below it is
    its own component (LegalBar) so it can stick to the bottom of the screen. */
