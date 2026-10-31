@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { site } from "@/config/site";
-import { BASES, CUSTOM_BASE, MODULES, MODULE_GROUPS, fmtRobux, fmtUsd, quote, quoteCustom, robux, type Base } from "@/lib/builder";
+import { BASES, CUSTOM_BASE, LOAD_WARN, MODULES, MODULE_GROUPS, customWarnings, fmtRobux, fmtUsd, quote, quoteCustom, robux, type Base } from "@/lib/builder";
 import { Mark, Split, useFadeUps } from "./primitives";
 
 /* "Design your dream bot": either pick a packaged bot or build your own from individual modules, then give it
@@ -36,6 +36,8 @@ export default function Build() {
   const pickedBases = BASES.filter((b) => picked.includes(b.id));
   const pickedMods = MODULES.filter((m) => mods.includes(m.id));
   const hasPick = custom ? mods.length > 0 : picked.length > 0;
+  const warn = useMemo(() => customWarnings(mods), [mods]);
+  const loadPct = Math.min(100, Math.round((warn.load / LOAD_WARN) * 100));
   const erlcOnly = !custom && pickedBases.length > 0 && pickedBases.every((b) => b.group === "erlc");
   const name = id.name.trim() || "Your Bot";
   const handle = (id.name.trim() || "yourbot").toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 24) || "yourbot";
@@ -122,6 +124,26 @@ export default function Build() {
                       <div><b>Custom bot</b> <span className="build_muted">starts at {fmtUsd(CUSTOM_BASE)}, then add the parts below</span></div>
                       <div className="build_custom-count">{mods.length} {mods.length === 1 ? "part" : "parts"} picked{mods.length > 0 && <button type="button" onClick={() => setMods([])}>Clear</button>}</div>
                     </div>
+                    <div className="build_note">
+                      <b>What a custom build includes.</b> You get the parts you pick, and we keep those parts updated. New parts and new features we release later aren&apos;t included; you can add them to your bot any time at their listed price. Packages get everything new as it ships.
+                    </div>
+                    <div className="build_legend">
+                      <span><i className="is-ai" />AI: runs on AI minutes, so it costs more</span>
+                      <span><i className="is-ongoing" />Ongoing: streaming or third-party services behind it</span>
+                      <span><i className="is-voice" />Voice: lives in a voice channel</span>
+                    </div>
+                    <div className={`build_load${warn.rateLimit ? " is-hot" : ""}`}>
+                      <div className="build_load-head"><span>Bot load</span><b>{warn.rateLimit ? "Heavy" : loadPct >= 60 ? "Moderate" : "Light"}</b></div>
+                      <div className="build_load-bar"><i style={{ width: `${loadPct}%` }} /></div>
+                      <p>{warn.rateLimit
+                        ? "Heads up: this many parts in one bot can hit Discord's rate limits in a busy server, so some actions may lag or be delayed. Consider splitting the heavier parts into a second bot."
+                        : "Every part adds Discord traffic. Keep an eye on this bar: once it fills, a busy server may start to see rate limits."}</p>
+                    </div>
+                    {warn.voice.length > 0 && (
+                      <div className="build_warn">
+                        <b>Voice parts may conflict.</b> {warn.voice.map((m) => m.name).join(", ")} all need the voice channel, and one bot can only sit in one voice channel at a time. If you want them running together, they belong in separate bots.
+                      </div>
+                    )}
                     {MODULE_GROUPS.map((gr) => (
                       <div className="build_group" key={gr.id}>
                         <div className="build_group-label"><span>{gr.label}</span></div>
@@ -131,7 +153,11 @@ export default function Build() {
                             return (
                               <button type="button" key={m.id} className={`build_mod${on ? " is-on" : ""}`} onClick={() => toggleMod(m.id)} aria-pressed={on}>
                                 <i className="build_check" aria-hidden="true" />
-                                <span className="build_mod-body"><b>{m.name}</b><small>{m.desc}</small></span>
+                                <span className="build_mod-body">
+                                  <b>{m.name}</b>
+                                  <small>{m.desc}</small>
+                                  {(m.cost || m.voice) && <span className="build_tags">{m.cost === "ai" && <i className="is-ai">AI</i>}{m.cost === "ongoing" && <i className="is-ongoing">Ongoing</i>}{m.voice && <i className="is-voice">Voice</i>}</span>}
+                                </span>
                                 <em>+{fmtUsd(m.price)}</em>
                               </button>
                             );
@@ -225,7 +251,9 @@ export default function Build() {
                 <a href={checkout} target="_blank" rel="noreferrer" className={`build_cta${hasPick ? "" : " is-off"}`} aria-disabled={!hasPick} onClick={(e) => { if (!hasPick) e.preventDefault(); }}>
                   Continue to payment <span aria-hidden="true">→</span>
                 </a>
-                <div className="build_fine">{custom ? "Custom builds are estimates. We confirm the final quote before any work begins." : "Final pricing depends on scope. We'll confirm everything before any work begins."}</div>
+                {custom && warn.rateLimit && <div className="build_fine is-warn">Heavy build: a busy server may see Discord rate limits with this many parts.</div>}
+                {custom && warn.voice.length > 0 && <div className="build_fine is-warn">{warn.voice.map((m) => m.name).join(" and ")} share one voice channel and may conflict.</div>}
+                <div className="build_fine">{custom ? "Custom builds are estimates, confirmed before any work begins. You get the parts you pick and their updates; new parts are sold separately." : "Final pricing depends on scope. We'll confirm everything before any work begins."}</div>
               </div>
             </aside>
           </div>

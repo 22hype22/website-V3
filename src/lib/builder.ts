@@ -98,51 +98,66 @@ export const MODULE_GROUPS: { id: ModuleGroup; label: string }[] = [
   { id: "erlc", label: "ER:LC & Roblox" },
 ];
 
-export type Module = { id: string; name: string; group: ModuleGroup; desc: string; price: number };
+export type Module = {
+  id: string; name: string; group: ModuleGroup; desc: string; price: number;
+  cost?: "ai" | "ongoing";   // priced higher: AI usage, or something that keeps costing us after the sale
+  voice?: boolean;           // lives in a voice channel (one bot can only be in one at a time)
+  load?: number;             // how hard it leans on Discord's rate limits (default 1)
+};
 
-/* Prices are reference estimates: the ones the store lists for add-ons, plus placeholders for core systems. */
+/* Most parts are cheap. AI parts and anything with a running cost (voice, streaming, third-party APIs) are not. */
 export const MODULES: Module[] = [
-  { id: "verify", name: "Verification system", group: "moderation", desc: "Gate the server behind a verify step.", price: 4.99 },
-  { id: "modtools", name: "Warn, mute, ban, kick", group: "moderation", desc: "The full mod toolkit with reasons and history.", price: 4.99 },
-  { id: "antiraid", name: "Anti-spam & anti-raid", group: "moderation", desc: "Catches floods and join raids as they start.", price: 4.99 },
-  { id: "phishing", name: "Phishing link detection", group: "moderation", desc: "Deletes known scam links on sight.", price: 1.99 },
-  { id: "logging", name: "Advanced logging", group: "moderation", desc: "Message edits, deletes, and full activity logs.", price: 2.99 },
-  { id: "nsfw", name: "NSFW invite & avatar scanning", group: "moderation", desc: "Flags NSFW invites and avatars, stores censored evidence.", price: 2.99 },
-  { id: "escalate", name: "Auto-escalating warnings", group: "moderation", desc: "Warns auto-escalate to mute and ban thresholds.", price: 1.99 },
-  { id: "lockdown", name: "Lockdown & temp-bans", group: "moderation", desc: "Lock a channel or the server, bans that lift themselves.", price: 1.99 },
-  { id: "wordfilter", name: "Word filter & auto slowmode", group: "moderation", desc: "Banned phrases and slowmode when chat spikes.", price: 1.99 },
-  { id: "tickets", name: "Ticket system", group: "tickets", desc: "Unlimited categories, buttons, and claim flow.", price: 9.99 },
+  { id: "verify", name: "Verification system", group: "moderation", desc: "Gate the server behind a verify step.", price: 1.99 },
+  { id: "modtools", name: "Warn, mute, ban, kick", group: "moderation", desc: "The full mod toolkit with reasons and history.", price: 1.99 },
+  { id: "antiraid", name: "Anti-spam & anti-raid", group: "moderation", desc: "Catches floods and join raids as they start.", price: 2.99, load: 3 },
+  { id: "phishing", name: "Phishing link detection", group: "moderation", desc: "Deletes known scam links on sight.", price: 0.99, load: 2 },
+  { id: "logging", name: "Advanced logging", group: "moderation", desc: "Message edits, deletes, and full activity logs.", price: 1.99, load: 3 },
+  { id: "nsfw", name: "NSFW invite & avatar scanning", group: "moderation", desc: "Flags NSFW invites and avatars, stores censored evidence.", price: 7.99, cost: "ongoing", load: 2 },
+  { id: "escalate", name: "Auto-escalating warnings", group: "moderation", desc: "Warns auto-escalate to mute and ban thresholds.", price: 0.99 },
+  { id: "lockdown", name: "Lockdown & temp-bans", group: "moderation", desc: "Lock a channel or the server, bans that lift themselves.", price: 0.99 },
+  { id: "wordfilter", name: "Word filter & auto slowmode", group: "moderation", desc: "Banned phrases and slowmode when chat spikes.", price: 0.99, load: 2 },
+  { id: "tickets", name: "Ticket system", group: "tickets", desc: "Unlimited categories, buttons, and claim flow.", price: 2.99 },
   { id: "transcripts", name: "Ticket transcripts & logs", group: "tickets", desc: "Full history of every ticket, saved.", price: 0.99 },
   { id: "notes", name: "Ticket notes & members", group: "tickets", desc: "Internal staff notes, pull people in or out.", price: 0.99 },
-  { id: "appeals", name: "Ban appeals & reports", group: "tickets", desc: "Appeal forms and member reports, routed to staff.", price: 2.99 },
+  { id: "appeals", name: "Ban appeals & reports", group: "tickets", desc: "Appeal forms and member reports, routed to staff.", price: 1.99 },
   { id: "staffperf", name: "Staff performance tracking", group: "tickets", desc: "Tickets handled, response times, and more.", price: 1.99 },
   { id: "priority", name: "Priority flagging & auto-close", group: "tickets", desc: "Mark tickets urgent, close stale ones.", price: 0.99 },
   { id: "anon", name: "Anonymous reporting", group: "tickets", desc: "Members report without revealing who they are.", price: 0.99 },
-  { id: "welcome", name: "Welcome / goodbye messages", group: "tickets", desc: "Cards and messages when people join or leave.", price: 1.99 },
-  { id: "reactionroles", name: "Reaction roles", group: "community", desc: "Unlimited self-assign role menus.", price: 2.99 },
-  { id: "autorole", name: "Autorole & polls", group: "community", desc: "Roles on join and quick polls.", price: 1.99 },
+  { id: "welcome", name: "Welcome / goodbye messages", group: "tickets", desc: "Cards and messages when people join or leave.", price: 0.99 },
+  { id: "reactionroles", name: "Reaction roles", group: "community", desc: "Unlimited self-assign role menus.", price: 1.99 },
+  { id: "autorole", name: "Autorole & polls", group: "community", desc: "Roles on join and quick polls.", price: 0.99 },
   { id: "announce", name: "/say and /announce", group: "community", desc: "Styled announcements from the bot.", price: 0.99 },
-  { id: "starboard", name: "Starboard", group: "community", desc: "Highlight top reactions in a channel.", price: 0.99 },
+  { id: "starboard", name: "Starboard", group: "community", desc: "Highlight top reactions in a channel.", price: 0.99, load: 2 },
   { id: "giveaways", name: "Giveaway system", group: "community", desc: "Giveaways with reactions and timers.", price: 0.99 },
-  { id: "leveling", name: "Leveling system", group: "community", desc: "XP, level-ups, and role rewards.", price: 2.99 },
+  { id: "leveling", name: "Leveling system", group: "community", desc: "XP, level-ups, and role rewards.", price: 1.99, load: 3 },
   { id: "economy", name: "Economy system", group: "community", desc: "Currency, shop, gambling, and rewards.", price: 1.99 },
-  { id: "stats", name: "Server stats channels", group: "community", desc: "Auto-updating member-count channels.", price: 0.99 },
+  { id: "stats", name: "Server stats channels", group: "community", desc: "Auto-updating member-count channels.", price: 0.99, load: 2 },
   { id: "reminders", name: "Reminders & recurring messages", group: "community", desc: "/remindme and messages on a timer.", price: 0.99 },
-  { id: "music", name: "Music", group: "media", desc: "Full playback with queues and controls.", price: 1.99 },
-  { id: "radio", name: "Auto radio by genre", group: "media", desc: "Non-stop radio, 24/7.", price: 0.99 },
-  { id: "streams", name: "Twitch / YouTube notifications", group: "media", desc: "Ping when streamers go live or upload.", price: 0.99 },
-  { id: "tts", name: "Text to speech", group: "media", desc: "Reads messages aloud in voice.", price: 0.99 },
-  { id: "robloxsync", name: "Roblox verification & rank sync", group: "erlc", desc: "Link Roblox accounts, sync group ranks to roles.", price: 4.99 },
-  { id: "infractions", name: "Infractions & promotions", group: "erlc", desc: "Staff infraction and promotion logs.", price: 2.99 },
-  { id: "shifts", name: "Shifts & leave of absence", group: "erlc", desc: "Clock in, clock out, and LOA requests.", price: 2.99 },
-  { id: "applications", name: "Applications", group: "erlc", desc: "A form you design, accepted in one press.", price: 4.99 },
-  { id: "roster", name: "Roster & quotas", group: "erlc", desc: "Live roster by rank with weekly quotas.", price: 4.99 },
-  { id: "certs", name: "Certifications", group: "erlc", desc: "K9, SWAT, FTO and more, logged per member.", price: 1.99 },
-  { id: "dispatcher", name: "AI 911 dispatcher (voice)", group: "erlc", desc: "Reads calls aloud and talks back.", price: 14.99 },
-  { id: "trainer", name: "AI staff trainer (voice)", group: "erlc", desc: "Trains staff out loud from your handbook.", price: 14.99 },
+  { id: "music", name: "Music", group: "media", desc: "Full playback with queues and controls.", price: 7.99, cost: "ongoing", voice: true, load: 2 },
+  { id: "radio", name: "Auto radio by genre", group: "media", desc: "Non-stop radio, 24/7.", price: 4.99, cost: "ongoing", voice: true, load: 2 },
+  { id: "streams", name: "Twitch / YouTube notifications", group: "media", desc: "Ping when streamers go live or upload.", price: 4.99, cost: "ongoing", load: 2 },
+  { id: "tts", name: "Text to speech", group: "media", desc: "Reads messages aloud in voice.", price: 7.99, cost: "ongoing", voice: true },
+  { id: "robloxsync", name: "Roblox verification & rank sync", group: "erlc", desc: "Link Roblox accounts, sync group ranks to roles.", price: 2.99, load: 2 },
+  { id: "infractions", name: "Infractions & promotions", group: "erlc", desc: "Staff infraction and promotion logs.", price: 0.99 },
+  { id: "shifts", name: "Shifts & leave of absence", group: "erlc", desc: "Clock in, clock out, and LOA requests.", price: 0.99 },
+  { id: "applications", name: "Applications", group: "erlc", desc: "A form you design, accepted in one press.", price: 1.99 },
+  { id: "roster", name: "Roster & quotas", group: "erlc", desc: "Live roster by rank with weekly quotas.", price: 1.99 },
+  { id: "certs", name: "Certifications", group: "erlc", desc: "K9, SWAT, FTO and more, logged per member.", price: 0.99 },
+  { id: "dispatcher", name: "AI 911 dispatcher (voice)", group: "erlc", desc: "Reads calls aloud and talks back.", price: 29.99, cost: "ai", voice: true, load: 2 },
+  { id: "trainer", name: "AI staff trainer (voice)", group: "erlc", desc: "Trains staff out loud from your handbook.", price: 29.99, cost: "ai", voice: true, load: 2 },
 ];
 
-export const CUSTOM_BASE = 49; // the bare custom bot before modules
+export const LOAD_WARN = 16;   // past this the bot may start hitting Discord rate limits in a busy server
+
+/** The things a custom build should be told about: how heavily it leans on rate limits, and voice-channel clashes. */
+export function customWarnings(ids: string[]) {
+  const mods = MODULES.filter((m) => ids.includes(m.id));
+  const load = mods.reduce((s, m) => s + (m.load ?? 1), 0);
+  const voice = mods.filter((m) => m.voice);
+  return { load, rateLimit: load >= LOAD_WARN, voice: voice.length > 1 ? voice : [] };
+}
+
+export const CUSTOM_BASE = 29; // the bare custom bot before modules
 
 export function quoteCustom(ids: string[]): Quote {
   const mods = MODULES.filter((m) => ids.includes(m.id));
