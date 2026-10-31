@@ -77,8 +77,8 @@ export default function Site() {
           <Faq />
           <Stay />
           <Footer />
-          <LegalBar />
         </main>
+        <LegalBar />
       </div>
       <Cursor />
     </ReactLenis>

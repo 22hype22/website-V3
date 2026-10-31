@@ -29,6 +29,8 @@ export const site = {
   },
   discordUrl: "https://discord.gg/ovs",
   discordHandle: ".gg/ovs",
+  tiktokUrl: "https://www.tiktok.com/@oversite.erlc",
+  youtubeUrl: "https://www.youtube.com/@all.things.oversite",
   email: "support@oversite.shop",
   founded: 2025,
 };
