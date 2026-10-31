@@ -41,6 +41,23 @@ export default function Site() {
     else lenis.stop();
   }, [revealed]);
 
+  // the mountain behind the page drifts with the scroll: the top of the photo at the top of the page,
+  // its midpoint once you reach the bottom (see body::before in overrides.css)
+  useEffect(() => {
+    const root = document.documentElement;
+    let raf = 0;
+    const paint = () => {
+      raf = 0;
+      const max = Math.max(1, root.scrollHeight - window.innerHeight);
+      root.style.setProperty("--bg-p", String(Math.min(1, Math.max(0, window.scrollY / max))));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(paint); };
+    paint();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => { cancelAnimationFrame(raf); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); };
+  }, []);
+
   // in-page links scroll through Lenis
   useEffect(() => {
     const onClick = (e: MouseEvent) => {

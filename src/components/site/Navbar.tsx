@@ -25,7 +25,7 @@ export default function Navbar({ ready }: { ready: boolean }) {
   // slide the bar away while scrolling down, bring it back on the way up (the live site's IX2 behaviour)
   useGSAP(() => {
     // the wrapper has no height of its own, so (like the live IX2) it is the fixed .navbar that slides away
-    gsap.to(root.current!.querySelector(".navbar"), { yPercent: hidden && !open ? -100 : 0, duration: 0.5, ease: "power3.out", overwrite: "auto" });
+    gsap.to(root.current!.querySelector(".navbar"), { yPercent: hidden && !open ? -160 : 0, duration: 0.5, ease: "power3.out", overwrite: "auto" });
   }, { dependencies: [hidden, open] });
 
   useEffect(() => {

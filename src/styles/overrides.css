@@ -31,7 +31,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: url("/assets/assistant-bg.webp") center 35% / cover no-repeat;
+  background: url("/assets/assistant-bg.webp") 50% calc(var(--bg-p, 0) * 50%) / cover no-repeat;
   opacity: 0.1;
   filter: grayscale(1);
   pointer-events: none;
@@ -85,6 +85,27 @@ html.lenis, html.lenis body { height: auto; }
 .preloader-glow { position: absolute; left: 50%; bottom: -30%; width: 70vw; height: 50vh; transform: translateX(-30%); background: radial-gradient(ellipse at center, rgba(255,255,255,.06), rgba(255,255,255,0) 60%); filter: blur(30px); pointer-events: none; }
 
 /* ───────── navigation ───────── */
+/* the bar floats as a detached frosted pill instead of spanning the top edge */
+.navbar {
+  top: 1rem; left: 0; right: 0;
+  width: min(calc(100% - 2.5rem), 88rem);
+  margin: 0 auto;
+  padding-top: 0.6rem; padding-bottom: 0.6rem;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.78);
+  -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+.navbar .padding-global { padding-left: 1.4rem; padding-right: 0.9rem; }
+@media screen and (max-width: 767px) {
+  .navbar { top: 0.75rem; width: calc(100% - 1.5rem); padding-top: 0.5rem; padding-bottom: 0.5rem; }
+  .navbar .padding-global { padding-left: 1rem; padding-right: 0.75rem; }
+  .navbar.is-open { border-radius: 1.6rem; }
+  .navbar.is-open .nav-components { flex-wrap: wrap; }
+  .nav-link, .nav-link.is-mb, .nav-link.is-mb.w--current { color: var(--base-color-brand--black); }
+  .nav_menu-text { color: rgba(18, 18, 18, 0.45); }
+}
 .link-wrapper .hover-line { transform: translateX(-100%); transition: transform .4s cubic-bezier(.22,1,.36,1); }
 .link-wrapper:hover .hover-line { transform: translateX(0); }
 /* the tabs sit in the true centre of the bar (the live layout right-aligns them next to the button) */
@@ -106,7 +127,7 @@ html.lenis, html.lenis body { height: auto; }
   .navbar.is-open .menu-btn { display: none; }
   .navbar.is-open .menu-btn.is-close { display: block; }
   .navbar .nav-manu { display: none; }
-  .navbar.is-open .nav-manu { display: flex; position: fixed; inset: 4.5rem 0 0; z-index: 998; overflow: auto; }
+  .navbar.is-open .nav-manu { display: flex; position: static; order: 10; flex: 0 0 100%; width: 100%; height: auto; padding: 0.5rem 0.25rem 1rem; background: transparent; }
 }
 
 /* ───────── hero ───────── */
