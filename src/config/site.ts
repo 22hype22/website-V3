@@ -26,6 +26,8 @@ export const site = {
     terms: "https://www.oversite.shop/legal/terms-of-use",
     refunds: "https://www.oversite.shop/legal/sales-and-refunds",
   },
+  /* Optional: a server that answers the help chat (POST { messages } -> { reply }). Empty = built-in answers. */
+  assistantEndpoint: "",
   discordUrl: "https://discord.gg/ovs",
   discordHandle: ".gg/ovs",
   tiktokUrl: "https://www.tiktok.com/@oversite.erlc",

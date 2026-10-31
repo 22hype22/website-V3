@@ -69,7 +69,8 @@ is then served at the repository's Pages URL.
 - `src/components/site/primitives.tsx` the shared pieces: `Split` (the live site's four text effects), `Counter`, `LottiePlayer`, `Brand`, `Mark`, `useFadeUps`
 - `src/styles/webflow.css` the live site's stylesheet with its asset URLs pointed at `public/al/`
 - `src/styles/overrides.css` the font, the fluid root size, and the few things done here instead of by Webflow's runtime (preloader, brand lockup, mobile menu, FAQ, pricing toggle, cursor, badge cards)
-- `src/config/site.ts` the brand name, links and contact address used across the site
+- `src/config/site.ts` the brand name, links and contact address used across the site; `assistantEndpoint` points the help chat at a server (POST `{ messages }`, reply `{ reply }`) instead of its built-in answers
+- `src/components/site/Assistant.tsx` the help chat window opened from the FAQ's "Got something else?" button; `src/lib/assistant.ts` holds its knowledge base and matching
 - `src/lib/gsap.ts` the GSAP plugin registry and shared eases
 - `public/al/` images from the live site, `public/lottie/` its Lottie files, `public/video/` the dashboard videos, `public/assets/` the Oversite mark
 - `scripts/relative-export.mjs` rewrites the export to page-relative paths

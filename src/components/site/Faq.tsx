@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { Mark, Split, useFadeUps } from "./primitives";
+import Assistant from "./Assistant";
 
 const QA: [string, string][] = [
   [`What is ${site.name}?`, `${site.name} Customs is the ER:LC design product from ${site.name}: a managed Discord bot plus web dashboard that runs a Roblox ER:LC (Emergency Response: Liberty County) design server end to end. Commissions and order tickets, designer portfolios, package storefronts, payments, a credits economy, Roblox verification and group sync, and join logs all live in one place, with nothing to self-host.`],
@@ -17,6 +18,7 @@ const QA: [string, string][] = [
 export default function Faq() {
   const root = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState<number | null>(null);
+  const [chat, setChat] = useState(false);
   useFadeUps(root);
 
   useGSAP(() => {
@@ -36,8 +38,9 @@ export default function Faq() {
           <div className="w-layout-hflex faq_wrap">
             <div className="faq_left">
               <Split as="h2">Frequently Asked Questions</Split>
-              <div className="faq_sub"><div data-fade>Everything worth knowing before you deploy. Still curious? Open a ticket in the&nbsp;Discord and we'll sort you out.</div></div>
-              <a href={site.discordUrl} target="_blank" rel="noreferrer" className="button w-button" data-fade>Join the Discord</a>
+              <div className="faq_sub"><div data-fade>Everything worth knowing before you deploy. Still curious? Ask our assistant anything, in your own words.</div></div>
+              <button type="button" className="button w-button" data-fade onClick={() => setChat(true)}>Got something else?</button>
+              <Assistant open={chat} onClose={() => setChat(false)} />
             </div>
             <div className="w-layout-vflex faq_items">
               {QA.map(([q, a], i) => (
