@@ -2,15 +2,17 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { site } from "@/config/site";
-import { BASES, fmtRobux, fmtUsd, quote, robux, type Base } from "@/lib/builder";
+import { BASES, CUSTOM_BASE, MODULES, MODULE_GROUPS, fmtRobux, fmtUsd, quote, quoteCustom, robux, type Base } from "@/lib/builder";
 import { Mark, Split, useFadeUps } from "./primitives";
 
-/* "Design your dream bot": pick bases, give the bot a name, icon and banner, add notes, and watch the
-   Discord-style preview and the quote update. "Continue to payment" hands the selection to the store. */
+/* "Design your dream bot": either pick a packaged bot or build your own from individual modules, then give it
+   a name, icon, banner and status. The Discord-style preview and the quote update as you go, and
+   "Continue to payment" hands the selection to the store. */
 
-const BIO_MAX = 128;
+const STATUS_MAX = 128;
 
-type Identity = { name: string; about: string; bio: string; icon: string | null; banner: string | null };
+type Mode = "packages" | "custom";
+type Identity = { name: string; about: string; status: string; icon: string | null; banner: string | null };
 
 function useObjectUrl() {
   const urls = useRef<string[]>([]);
@@ -19,28 +21,34 @@ function useObjectUrl() {
 }
 
 export default function Build() {
+  const [mode, setMode] = useState<Mode>("packages");
   const [picked, setPicked] = useState<string[]>([]);
-  const [id, setId] = useState<Identity>({ name: "", about: "", bio: "", icon: null, banner: null });
-  const [notes, setNotes] = useState("");
+  const [mods, setMods] = useState<string[]>([]);
+  const [id, setId] = useState<Identity>({ name: "", about: "", status: "", icon: null, banner: null });
   const toUrl = useObjectUrl();
   const root = useRef<HTMLDivElement>(null);
   useFadeUps(root);
 
-  const q = useMemo(() => quote(picked), [picked]);
-  const toggle = (b: Base) => setPicked((p) => (p.includes(b.id) ? p.filter((x) => x !== b.id) : [...p, b.id]));
+  const custom = mode === "custom";
+  const q = useMemo(() => (custom ? quoteCustom(mods) : quote(picked)), [custom, mods, picked]);
+  const toggleBase = (b: Base) => setPicked((p) => (p.includes(b.id) ? p.filter((x) => x !== b.id) : [...p, b.id]));
+  const toggleMod = (m: string) => setMods((p) => (p.includes(m) ? p.filter((x) => x !== m) : [...p, m]));
   const pickedBases = BASES.filter((b) => picked.includes(b.id));
-  const erlcOnly = pickedBases.length > 0 && pickedBases.every((b) => b.group === "erlc");
+  const pickedMods = MODULES.filter((m) => mods.includes(m.id));
+  const hasPick = custom ? mods.length > 0 : picked.length > 0;
+  const erlcOnly = !custom && pickedBases.length > 0 && pickedBases.every((b) => b.group === "erlc");
   const name = id.name.trim() || "Your Bot";
   const handle = (id.name.trim() || "yourbot").toLowerCase().replace(/[^a-z0-9]+/g, "").slice(0, 24) || "yourbot";
 
   // the store opens with the selection pre-filled
   const checkout = useMemo(() => {
     const u = new URL(site.buildUrl);
-    if (picked.length) u.searchParams.set("bases", picked.join(","));
+    if (custom) { if (mods.length) u.searchParams.set("modules", mods.join(",")); }
+    else if (picked.length) u.searchParams.set("bases", picked.join(","));
     if (id.name.trim()) u.searchParams.set("name", id.name.trim());
-    if (notes.trim()) u.searchParams.set("notes", notes.trim().slice(0, 500));
+    if (id.about.trim()) u.searchParams.set("about", id.about.trim().slice(0, 500));
     return u.toString();
-  }, [picked, id.name, notes]);
+  }, [custom, mods, picked, id.name, id.about]);
 
   const group = (g: Base["group"], label: string) => (
     <div className="build_group">
@@ -50,7 +58,7 @@ export default function Build() {
           const on = picked.includes(b.id);
           const item = q.items.find((i) => i.base.id === b.id);
           return (
-            <button type="button" key={b.id} className={`build_card${on ? " is-on" : ""}`} onClick={() => toggle(b)} aria-pressed={on}>
+            <button type="button" key={b.id} className={`build_card${on ? " is-on" : ""}`} onClick={() => toggleBase(b)} aria-pressed={on}>
               <div className="build_card-top">
                 <div className="build_card-name"><i className="build_check" aria-hidden="true" />{b.name}</div>
                 {b.soon && <span className="build_pill">Coming soon</span>}
@@ -85,7 +93,7 @@ export default function Build() {
 
           <div className="build_head">
             <Split as="h2">Design your dream bot.</Split>
-            <p data-fade>Pick a base, stack on add-ons, and tell us what you want. We&apos;ll quote your build and get the wheels spinning.</p>
+            <p data-fade>Pick a packaged bot, or build your own from the parts you want. We&apos;ll quote your build and get the wheels spinning.</p>
           </div>
 
           <div className="build_layout">
@@ -94,9 +102,45 @@ export default function Build() {
 
               <section className="build_step">
                 <div className="build_step-head"><span className="build_num">1</span><h3>Pick a starting point</h3></div>
-                <div className="build_step-sub">Pick one bot, mix two, or grab the All-in-One Pack to bundle all three.</div>
-                {group("erlc", "ER:LC bots")}
-                {group("discord", "Discord bots")}
+                <div className="build_modes" role="tablist" aria-label="How to start">
+                  <button type="button" role="tab" aria-selected={!custom} className={`build_mode${!custom ? " is-on" : ""}`} onClick={() => setMode("packages")}>
+                    <b>Packages</b><span>Ready-made bots. Pick one, mix two, or grab a pack.</span>
+                  </button>
+                  <button type="button" role="tab" aria-selected={custom} className={`build_mode${custom ? " is-on" : ""}`} onClick={() => setMode("custom")}>
+                    <b>Build your own</b><span>Tick the parts you want. We put them together as one bot.</span>
+                  </button>
+                </div>
+
+                {!custom ? (
+                  <>
+                    {group("erlc", "ER:LC bots")}
+                    {group("discord", "Discord bots")}
+                  </>
+                ) : (
+                  <>
+                    <div className="build_custom-bar">
+                      <div><b>Custom bot</b> <span className="build_muted">starts at {fmtUsd(CUSTOM_BASE)}, then add the parts below</span></div>
+                      <div className="build_custom-count">{mods.length} {mods.length === 1 ? "part" : "parts"} picked{mods.length > 0 && <button type="button" onClick={() => setMods([])}>Clear</button>}</div>
+                    </div>
+                    {MODULE_GROUPS.map((gr) => (
+                      <div className="build_group" key={gr.id}>
+                        <div className="build_group-label"><span>{gr.label}</span></div>
+                        <div className="build_mods">
+                          {MODULES.filter((m) => m.group === gr.id).map((m) => {
+                            const on = mods.includes(m.id);
+                            return (
+                              <button type="button" key={m.id} className={`build_mod${on ? " is-on" : ""}`} onClick={() => toggleMod(m.id)} aria-pressed={on}>
+                                <i className="build_check" aria-hidden="true" />
+                                <span className="build_mod-body"><b>{m.name}</b><small>{m.desc}</small></span>
+                                <em>+{fmtUsd(m.price)}</em>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                )}
               </section>
 
               <section className="build_step">
@@ -121,16 +165,9 @@ export default function Build() {
                   <textarea rows={4} placeholder="Tell us about your bot: what it does, its personality, the vibe you're going for, and anything that makes it uniquely yours." value={id.about} onChange={(e) => setId({ ...id, about: e.target.value })} />
                 </label>
                 <label className="build_field">
-                  <span>Discord bot status <em>(optional, max {BIO_MAX} chars)</em></span>
-                  <textarea rows={2} maxLength={BIO_MAX} placeholder="The status shown under your bot's name, e.g. Watching over the server" value={id.bio} onChange={(e) => setId({ ...id, bio: e.target.value })} />
-                  <small>{id.bio.length}/{BIO_MAX}</small>
-                </label>
-              </section>
-
-              <section className="build_step">
-                <div className="build_step-head"><span className="build_num">3</span><h3>Anything else?</h3></div>
-                <label className="build_field">
-                  <textarea rows={4} placeholder="Custom commands, integrations, server size, deadlines, whatever you've got." value={notes} onChange={(e) => setNotes(e.target.value)} />
+                  <span>Discord bot status <em>(optional, max {STATUS_MAX} chars)</em></span>
+                  <textarea rows={2} maxLength={STATUS_MAX} placeholder="The status shown under your bot's name, e.g. Watching over the server" value={id.status} onChange={(e) => setId({ ...id, status: e.target.value })} />
+                  <small>{id.status.length}/{STATUS_MAX}</small>
                 </label>
               </section>
             </div>
@@ -142,11 +179,13 @@ export default function Build() {
                 <div className="build_profile-body">
                   <div className="build_profile-name">{name} <span>APP</span></div>
                   <div className="build_profile-handle">{handle}#0001</div>
+                  {id.status.trim() && <div className="build_status"><i aria-hidden="true" />{id.status}</div>}
                   <div className="build_addapp">+ Add App</div>
-                  {id.bio.trim() && <div className="build_status"><i aria-hidden="true" />{id.bio}</div>}
-                  <div className="build_label">Roles</div>
+                  <div className="build_label">{custom ? "Parts" : "Roles"}</div>
                   <div className="build_roles">
-                    {pickedBases.length ? pickedBases.map((b) => <span key={b.id}><i />{b.name}</span>) : <span className="is-empty"><i />Pick a bot to add a role</span>}
+                    {custom
+                      ? (pickedMods.length ? pickedMods.map((m) => <span key={m.id}><i />{m.name}</span>) : <span className="is-empty"><i />Tick a part to add it</span>)
+                      : (pickedBases.length ? pickedBases.map((b) => <span key={b.id}><i />{b.name}</span>) : <span className="is-empty"><i />Pick a bot to add a role</span>)}
                   </div>
                   <div className="build_message">Message @{name}</div>
                 </div>
@@ -158,7 +197,12 @@ export default function Build() {
                   <b>{fmtUsd(q.oneTime)}</b>
                 </div>
                 <div className="build_row"><span>Or with Robux</span><b>{q.oneTime > 0 ? fmtRobux(robux(q.oneTime)) : "R$ 0"}</b></div>
-                {q.items.map((i) => (
+                {custom ? (
+                  <>
+                    <div className="build_row is-item"><span>Custom bot</span><b>{fmtUsd(CUSTOM_BASE)}</b></div>
+                    <div className="build_row is-item"><span>{pickedMods.length} {pickedMods.length === 1 ? "part" : "parts"}</span><b>{fmtUsd(Math.round((q.oneTime - CUSTOM_BASE) * 100) / 100)}</b></div>
+                  </>
+                ) : q.items.map((i) => (
                   <div className="build_row is-item" key={i.base.id}>
                     <span>{i.base.name}{i.note ? <em> · {i.note}</em> : null}</span>
                     <b>{i.base.price > 0 ? fmtUsd(i.price) : "TBC"}</b>
@@ -178,10 +222,10 @@ export default function Build() {
                   )}
                 </div>
 
-                <a href={checkout} target="_blank" rel="noreferrer" className={`build_cta${picked.length ? "" : " is-off"}`} aria-disabled={!picked.length} onClick={(e) => { if (!picked.length) e.preventDefault(); }}>
+                <a href={checkout} target="_blank" rel="noreferrer" className={`build_cta${hasPick ? "" : " is-off"}`} aria-disabled={!hasPick} onClick={(e) => { if (!hasPick) e.preventDefault(); }}>
                   Continue to payment <span aria-hidden="true">→</span>
                 </a>
-                <div className="build_fine">Final pricing depends on scope. We&apos;ll confirm everything before any work begins.</div>
+                <div className="build_fine">{custom ? "Custom builds are estimates. We confirm the final quote before any work begins." : "Final pricing depends on scope. We'll confirm everything before any work begins."}</div>
               </div>
             </aside>
           </div>

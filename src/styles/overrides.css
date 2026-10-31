@@ -323,6 +323,28 @@ html.no-js [data-fade] { opacity: 1; }
 .build_step-head h3 { font-size: 1.5rem; font-weight: 600; margin: 0; line-height: 1.2; color: #fff; }
 .build_num { display: inline-flex; width: 1.9rem; height: 1.9rem; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; }
 .build_step-sub { color: var(--bld-muted); font-size: 0.95rem; margin-top: -0.75rem; }
+/* packages vs build-your-own */
+.build_modes { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.build_mode { text-align: left; display: grid; gap: 0.25rem; border: 1px solid var(--bld-line); border-radius: 1rem; padding: 0.95rem 1.1rem; background: #1b1b1b; color: #fff; cursor: pointer; font: inherit; transition: border-color .25s, background .25s, color .25s; }
+.build_mode b { font-size: 1rem; font-weight: 600; }
+.build_mode span { font-size: 0.82rem; opacity: .65; line-height: 1.4; }
+.build_mode:hover { border-color: rgba(255, 255, 255, 0.45); }
+.build_mode.is-on { background: #fff; color: #121212; border-color: #fff; }
+.build_custom-bar { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; border: 1px solid var(--bld-line); border-radius: 0.9rem; padding: 0.8rem 1rem; font-size: 0.9rem; }
+.build_custom-count { display: flex; align-items: center; gap: 0.75rem; color: var(--bld-muted); }
+.build_custom-count button { font: inherit; font-size: 0.8rem; color: #fff; background: none; border: 1px solid var(--bld-line); border-radius: 999px; padding: 0.25rem 0.7rem; cursor: pointer; }
+.build_custom-count button:hover { border-color: #fff; }
+.build_mods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; }
+.build_mod { text-align: left; display: grid; grid-template-columns: auto 1fr auto; align-items: start; gap: 0.6rem; border: 1px solid var(--bld-line); border-radius: 0.9rem; padding: 0.8rem 0.85rem; background: #1b1b1b; color: #fff; cursor: pointer; font: inherit; transition: border-color .25s, background .25s, color .25s, transform .2s; }
+.build_mod:hover { border-color: rgba(255, 255, 255, 0.45); transform: translateY(-1px); }
+.build_mod.is-on { background: #fff; color: #121212; border-color: #fff; }
+.build_mod .build_check { margin-top: 0.1rem; width: 1rem; height: 1rem; }
+.build_mod.is-on .build_check { opacity: 1; background: #121212; border-color: #121212; }
+.build_mod.is-on .build_check::after { content: ""; position: absolute; left: 0.3rem; top: 0.1rem; width: 0.25rem; height: 0.5rem; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.build_mod-body { display: grid; gap: 0.15rem; min-width: 0; }
+.build_mod-body b { font-size: 0.88rem; font-weight: 600; line-height: 1.25; }
+.build_mod-body small { font-size: 0.74rem; line-height: 1.35; opacity: .65; }
+.build_mod em { font-style: normal; font-size: 0.78rem; font-weight: 600; opacity: .8; white-space: nowrap; }
 .build_group { display: grid; gap: 1rem; }
 .build_group-label { display: flex; align-items: center; gap: 1rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bld-muted); font-weight: 600; }
 .build_group-label::after { content: ""; flex: 1; height: 1px; background: var(--bld-line); }
@@ -400,6 +422,7 @@ html.no-js [data-fade] { opacity: 1; }
 .build_fine { font-size: 0.72rem; line-height: 1.45; color: var(--bld-muted); }
 @media screen and (max-width: 991px) {
   .build_layout { grid-template-columns: 1fr; }
+  .build_mods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .build_rail { position: static; grid-template-columns: 1fr 1fr; align-items: start; }
   .build_head h2 { font-size: 2.75rem; }
 }
@@ -409,6 +432,8 @@ html.no-js [data-fade] { opacity: 1; }
   .build_head p { font-size: 1rem; }
   .build_step { padding: 1.25rem; border-radius: 1.25rem; }
   .build_cards { grid-template-columns: 1fr; }
+  .build_modes { grid-template-columns: 1fr; }
+  .build_mods { grid-template-columns: 1fr; }
   .build_uploads { grid-template-columns: 6.5rem 1fr; }
   .build_upload.is-banner, .build_upload.is-icon { height: 6.5rem; }
   .build_rail { grid-template-columns: 1fr; }
