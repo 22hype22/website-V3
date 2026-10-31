@@ -20,7 +20,7 @@ export default function Why() {
   ];
 
   return (
-    <div className="section_why" ref={root}>
+    <div className="section_why" id="why" ref={root}>
       <div className="padding-global padding-section-medium">
         <div className="container-large">
           <div className="title-top">

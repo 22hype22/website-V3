@@ -4,6 +4,7 @@ export const site = {
   /* Top bar tabs, in order. A "|" entry draws a thin divider. Targets are placeholders until those pages exist. */
   nav: [
     ["/", "Home"],
+    ["#why", "Why Oversite"],
     ["#our-process", "Our Process"],
     ["#bots", "Bots"],
     "|",
