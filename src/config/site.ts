@@ -1,13 +1,14 @@
 /* Site-wide switches and copy. */
 export const site = {
   name: "Oversite",
-  /* Top bar tabs, in order. Targets are placeholders until those pages exist. */
+  /* Top bar tabs, in order. A "|" entry draws a thin divider. Targets are placeholders until those pages exist. */
   nav: [
     ["/", "Home"],
     ["#our-process", "Our Process"],
     ["#bots", "Bots"],
+    "|",
     ["#cad", "CAD"],
-  ] as [string, string][],
+  ] as ([string, string] | "|")[],
   /* The top-bar button: "Sign in" for visitors, "Dashboard" once signed in (see src/lib/auth.ts). */
   signInUrl: "#sign-in",
   dashboardUrl: "#dashboard",

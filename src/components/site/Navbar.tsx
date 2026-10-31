@@ -50,9 +50,9 @@ export default function Navbar({ ready }: { ready: boolean }) {
                 <div className="nav-flex">
                   <div className="nav_wrap">
                     <div className="nav_menu-text">Menu</div>
-                    {LINKS.map(([href, label], i) => (
-                      <div className="link-wrapper" key={label}>
-                        <a href={href} className={`nav-link${i === 0 ? " w--current" : ""}`} onClick={() => setOpen(false)}>{label}</a>
+                    {LINKS.map((item, i) => item === "|" ? <div className="nav-divider" aria-hidden="true" key={"divider" + i} /> : (
+                      <div className="link-wrapper" key={item[1]}>
+                        <a href={item[0]} className={`nav-link${i === 0 ? " w--current" : ""}`} onClick={() => setOpen(false)}>{item[1]}</a>
                         <div className="hover-line" />
                       </div>
                     ))}
@@ -67,19 +67,12 @@ export default function Navbar({ ready }: { ready: boolean }) {
                   </div>
                 </div>
                 <div className="nav-btn-wrap">
-                  <a href={account.href} className="button is-nav hide-mobile-landscape w-inline-block">
-                    <div className="start-icon-wrap"><img src="/al/6534.svg" loading="lazy" alt="" className="icon-start" /></div>
-                    <div>&nbsp;&nbsp;{account.label}&nbsp;&nbsp;&nbsp;</div>
+                  <a href={account.href} className="button is-nav is-account hide-mobile-landscape w-inline-block">
+                    <div>{account.label}</div>
                   </a>
                 </div>
               </nav>
-              <a href={account.href} className="button is-nav hide-desktop w-inline-block">
-                <div className="icon-arrow w-embed">
-                  <svg width="100%" height="100%" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.8334 7.00033C12.8334 10.222 10.2217 12.8337 7.00002 12.8337C3.77836 12.8337 1.16669 10.222 1.16669 7.00033C1.16669 3.77866 3.77836 1.16699 7.00002 1.16699C10.2217 1.16699 12.8334 3.77866 12.8334 7.00033Z" stroke="currentColor" strokeWidth="0.875" />
-                    <path d="M6.99998 7.58333C7.64431 7.58333 8.16665 7.061 8.16665 6.41667C8.16665 5.77233 7.64431 5.25 6.99998 5.25C6.35565 5.25 5.83331 5.77233 5.83331 6.41667C5.83331 7.061 6.35565 7.58333 6.99998 7.58333ZM6.99998 7.58333L6.99998 9.33333" stroke="currentColor" strokeWidth="0.875" strokeLinecap="round" />
-                  </svg>
-                </div>
+              <a href={account.href} className="button is-nav is-account hide-desktop w-inline-block">
                 <div className="nav-btn-t">{account.label}</div>
               </a>
               <div className="menu-button w-nav-button" aria-label="menu" role="button" tabIndex={0} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
