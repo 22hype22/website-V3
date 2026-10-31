@@ -31,7 +31,7 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: url("/assets/assistant-bg.webp") 50% calc(var(--bg-p, 0) * 50%) / cover no-repeat;
+  background: url("/assets/assistant-bg.webp") 50% calc(20% + var(--bg-p, 0) * 30%) / cover no-repeat;
   opacity: 0.1;
   filter: grayscale(1);
   pointer-events: none;
