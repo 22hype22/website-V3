@@ -152,18 +152,18 @@ html.lenis, html.lenis body { height: auto; }
   .legal-bar_links { gap: 1rem; font-size: 0.78rem; }
 }
 
-/* ───────── the help chat: an open scene in a teal haze. Floating column of text, a glass pill toolbar, a dark
+/* ───────── the help chat: an open scene in a soft grey haze. Floating column of text, a glass pill toolbar, a dark
    rounded dock for the composer. Enters with a fade and rise, leaves with a sink and fade. ───────── */
 html.chat-open { overflow: hidden; }
 .ast { position: fixed; inset: 0; z-index: 3000; display: flex; flex-direction: column; color: #FFFFFF; font-family: "Outfit", "Satoshi Variable", Arial, sans-serif; overflow: hidden;
-  background: linear-gradient(165deg, #070e10 0%, #0f1d21 28%, #22404a 62%, #3f6d7a 100%);
+  background: linear-gradient(165deg, #050505 0%, #121212 28%, #2b2b2b 62%, #4d4d4d 100%);
   animation: ast-fade .45s ease both; }
 .ast.is-closing { animation: ast-fade-out .38s ease forwards; }
 .ast_haze { position: absolute; inset: 0; pointer-events: none; }
 .ast_haze i { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .7; animation: ast-drift 14s ease-in-out infinite alternate; }
-.ast_haze i:nth-child(1) { width: 60vw; height: 60vw; left: 45%; top: -25%; background: rgba(96, 138, 148, 0.55); }
-.ast_haze i:nth-child(2) { width: 45vw; height: 45vw; left: -15%; top: 45%; background: rgba(107, 143, 95, 0.32); animation-delay: -5s; }
-.ast_haze i:nth-child(3) { width: 40vw; height: 40vw; left: 55%; top: 60%; background: rgba(63, 109, 122, 0.5); animation-delay: -9s; }
+.ast_haze i:nth-child(1) { width: 60vw; height: 60vw; left: 45%; top: -25%; background: rgba(255, 255, 255, 0.16); }
+.ast_haze i:nth-child(2) { width: 45vw; height: 45vw; left: -15%; top: 45%; background: rgba(200, 200, 200, 0.12); animation-delay: -5s; }
+.ast_haze i:nth-child(3) { width: 40vw; height: 40vw; left: 55%; top: 60%; background: rgba(170, 170, 170, 0.16); animation-delay: -9s; }
 @keyframes ast-drift { from { transform: translate(0, 0) scale(1); } to { transform: translate(4vw, -3vw) scale(1.08); } }
 @keyframes ast-fade { from { opacity: 0; } to { opacity: 1; } }
 @keyframes ast-fade-out { from { opacity: 1; } to { opacity: 0; } }
@@ -224,6 +224,7 @@ html.chat-open { overflow: hidden; }
 .ast_note { margin: 0.8rem 0.6rem 0; font-size: 0.74rem; font-weight: 300; color: rgba(255, 255, 255, 0.45); }
 .ast_note a { color: #fff; font-weight: 500; text-decoration: none; }
 .ast_note a:hover { text-decoration: underline; }
+
 @media screen and (max-width: 767px) {
   .ast_top { padding: 1rem 1rem 0; }
   .ast_who { display: none; }
