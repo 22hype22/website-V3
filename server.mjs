@@ -5,6 +5,7 @@ import http from "node:http";
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { join, extname, normalize, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { gate } from "./access-gate.mjs";
 
 const ROOT = join(fileURLToPath(new URL(".", import.meta.url)), "out");
 const PORT = +(process.env.PORT || 8080);
@@ -27,6 +28,9 @@ const send = (res, file, status = 200) => {
 http.createServer((req, res) => {
   const path = decodeURIComponent(new URL(req.url, "http://x").pathname);
   if (path === "/health") { res.writeHead(200, { "content-type": "text/plain" }); return res.end("ok"); }
+
+  // Preview lock: with ACCESS_CODE set, nothing below is served without the code.
+  if (gate(req, res)) return;
 
   // resolve inside out/ only
   const safe = normalize(path).replace(/^(\.\.[/\\])+/, "");
