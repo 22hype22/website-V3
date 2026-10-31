@@ -5,8 +5,8 @@ import "@/styles/webflow.css";
 import "@/styles/overrides.css";
 
 export const metadata: Metadata = {
-  title: "Oversite",
-  description: "Oversite is a leading provider of professional bot, web, and application development, delivering reliable solutions built to work for you.",
+  title: "Oversite — Managed Discord Bots for Serious Servers",
+  description: "Oversite builds managed Discord bots and dashboards for Roblox communities: Protection, Support and Utilities bots plus ER:LC tools, with nothing to host, no tokens and no code.",
   icons: { icon: "/assets/favicon.png" },
 };
 

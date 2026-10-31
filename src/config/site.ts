@@ -1,26 +1,34 @@
-/* Site-wide switches and copy. */
+/* Site-wide switches, links and copy. Every URL into the product lives here. */
 export const site = {
   name: "Oversite",
-  /* Top bar tabs, in order. A "|" entry draws a thin divider. Targets are placeholders until those pages exist. */
+  /* Top bar tabs, in order. A "|" entry draws a thin divider; http links open in a new tab. */
   nav: [
     ["/", "Home"],
     ["#why", "Why Oversite"],
-    ["#our-process", "Our Process"],
-    ["#bots", "Bots"],
+    ["#process", "Our Process"],
+    ["#fleet", "Bots"],
     "|",
-    ["#cad", "CAD"],
+    ["https://www.oversitescad.com/", "CAD"],
   ] as ([string, string] | "|")[],
   /* The top-bar button: "Sign in" for visitors, "Dashboard" once signed in (see src/lib/auth.ts). */
-  signInUrl: "#sign-in",
-  dashboardUrl: "#dashboard",
+  signInUrl: "https://www.oversite.shop/auth",
+  signUpUrl: "https://www.oversite.shop/auth?mode=signup",
+  dashboardUrl: "https://www.oversite.shop/bot-dashboard",
   /* A session is detected from this cookie, or from the oversite:signed-in key in localStorage. */
   sessionCookie: "oversite_session",
-  /* Where the other "Launch App" and "Get Started" buttons go. */
-  appUrl: "#launch",
-  loginUrl: "#sign-in",
-  signupUrl: "#signup",
-  helpUrl: "#help-center",
-  blogUrl: "#blog",
-  email: "info@oversite.com",
-  social: { linkedin: "#", instagram: "#", x: "#" },
+  /* Product links */
+  appUrl: "https://www.oversite.shop/auth", // "Deploy now"
+  botsUrl: "https://www.oversite.shop/bots",
+  buildUrl: "https://www.oversite.shop/bots#build",
+  processUrl: "https://www.oversite.shop/process",
+  erlcUrl: "https://www.oversite.shop/erlc-design",
+  legal: {
+    privacy: "https://www.oversite.shop/legal/privacy-policy",
+    terms: "https://www.oversite.shop/legal/terms-of-use",
+    refunds: "https://www.oversite.shop/legal/sales-and-refunds",
+  },
+  discordUrl: "https://discord.gg/ovs",
+  discordHandle: ".gg/ovs",
+  email: "support@oversite.shop",
+  founded: 2025,
 };

@@ -5,7 +5,7 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { Counter, type CounterHandle, LottiePlayer, type LottieHandle, Mark, Split } from "./primitives";
 
-/* "Why Oversite is the ultimate trading companion": three columns. Hovering one counts its figure up, shows its
+/* "Why Oversite is the platform serious servers run on": three columns. Hovering one counts its figure up, shows its
    number and note, and plays its chart animation (the live site's Lottie files). */
 export default function Why() {
   const root = useRef<HTMLDivElement>(null);
@@ -14,9 +14,9 @@ export default function Why() {
   }, { scope: root });
 
   const columns = [
-    { title: <>Discover investments</>, pre: "+", value: 55.46, dec: 2, post: "%", note: <>Browse our verified leaderboard <br />and community forum <br />to connect with providers.</>, lottie: "/lottie/data.json" },
-    { title: <>Improve your<br />trading</>, pre: "+", value: 32.46, dec: 2, post: "%", note: <>Track your trading with actionable<br />&nbsp;insights, tailored for success.</>, lottie: "/lottie/data2.json" },
-    { title: <>Attract<br />funding</>, pre: "$ ", value: 20, dec: 0, post: "M", note: <>Share your trackrecord <br />with investors and join<br />our funding program.</>, lottie: "/lottie/3.json" },
+    { title: <>Deploy in<br />seconds</>, pre: "", value: 47, dec: 0, post: "s", note: <>Authorize, toggle what you want,<br />and the auto-deploy pipeline<br />has you live.</>, lottie: "/lottie/data.json" },
+    { title: <>Always<br />online</>, pre: "", value: 100, dec: 0, post: "%", note: <>Uptime across the fleet, with<br />updates that roll out without<br />downtime or resets.</>, lottie: "/lottie/data2.json" },
+    { title: <>Trusted<br />at scale</>, pre: "", value: 1, dec: 0, post: "k+", note: <>Servers running {site.name} bots,<br />serving hundreds of thousands<br />of members.</>, lottie: "/lottie/3.json" },
   ];
 
   return (
@@ -29,8 +29,8 @@ export default function Why() {
           </div>
           <div className="why_content">
             <div className="why_heading">
-              <h5 style={{ opacity: 0 }}>Why {site.name} is the <span className="span-gradient">ultimate trading companion</span></h5>
-              <a href={site.appUrl} className="button is-white w-button">Launch App</a>
+              <h5 style={{ opacity: 0 }}>Why {site.name} is the <span className="span-gradient">platform serious servers run on</span></h5>
+              <a href={site.appUrl} className="button is-white w-button">Deploy now</a>
             </div>
             <div className="vertical-divider" />
             {columns.map((c, i) => <Column key={i} index={i + 1} {...c} />)}

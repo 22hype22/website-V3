@@ -5,9 +5,9 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { site } from "@/config/site";
 import { Counter, Mark, Split, useFadeUps } from "./primitives";
 
-/* "FEATURES — One Platform. Three Angles."
+/* "THE FLEET — Three Bots. One Server."
    The section is 260rem tall and its inner block is sticky, so the three cards travel sideways with the scroll.
-   Near the end the white background turns black and the "Full Power" feature grid scrolls up underneath. */
+   Near the end the white background turns black and the four-step process grid scrolls up underneath. */
 export default function Products() {
   const root = useRef<HTMLDivElement>(null);
   const cards = useRef<HTMLDivElement>(null);
@@ -35,12 +35,12 @@ export default function Products() {
   }, { scope: root });
 
   return (
-    <div id="discover" className="section_products" ref={root}>
+    <div id="fleet" className="section_products" ref={root}>
       <div className="padding-global is-products">
         <div className="products_track">
           <div className="container-large">
             <div className="title-top is-products">
-              <Split>FEATURES</Split>
+              <Split>THE FLEET</Split>
               <div className="title-icon"><Mark /></div>
             </div>
             <div className="products_content">
@@ -49,16 +49,16 @@ export default function Products() {
                 <div>Scroll</div>
               </div>
               <div className="products_c-content">
-                <Split as="h5">One Platform. Three Angles.</Split>
+                <Split as="h5">Three Bots. One Server.</Split>
                 <div className="products_cards" ref={cards}>
 
                   <div className="products_c-1">
                     <div className="w-layout-vflex products_c-text">
                       <img src="/al/Product_Icon.svg" loading="lazy" alt="" className="products_icon-card" />
                       <div className="products_c-btm">
-                        <Split className="products_card-title">Analytics</Split>
-                        <div>Access advanced, real-time analytics and market intelligence<br />to improve your edge.</div>
-                        <div className="products_wrap-btn"><a href={site.appUrl} className="button is-white w-button">Launch App</a></div>
+                        <Split className="products_card-title">Protection</Split>
+                        <div>Stops raids before they ever land. Auto-moderation, verification<br />and a real-time threat shield, always on.</div>
+                        <div className="products_wrap-btn"><a href={site.botsUrl} className="button is-white w-button">Explore Protection</a></div>
                       </div>
                     </div>
                     <div className="products_img-1">
@@ -79,8 +79,8 @@ export default function Products() {
                     <div className="w-layout-vflex products_c-text is-2">
                       <img src="/al/p.svg" loading="lazy" alt="" className="products_icon-card" />
                       <div className="products_c-btm">
-                        <div className="products_card-title">Community &amp; Verified Leaderboard</div>
-                        <div>Find ranked strategies from independently audited providers.<br />Connect, learn, and invest through our community.</div>
+                        <div className="products_card-title">Support</div>
+                        <div>Turns the chaos into clean tickets: routing, transcripts<br />and staff tools so nothing slips through.</div>
                       </div>
                     </div>
                     <img src="/al/c-bg.svg" loading="lazy" alt="" className="products_bg is-2" />
@@ -88,17 +88,17 @@ export default function Products() {
 
                   <div className="products_c-3">
                     <div className="products_c-3-r">
-                      <div className="w-layout-vflex products_numb-item is-r"><div className="products_wrap-numb"><div className="products_number">$</div><Counter to={20} className="products_number counter" /><div className="products_number">M</div></div><div>Scaling Up To</div></div>
-                      <div className="w-layout-vflex products_numb-item is-r"><div className="products_wrap-numb"><div className="products_number" /><div className="products_number">Individual</div><div className="products_number" /></div><div>% Profit Split</div></div>
+                      <div className="w-layout-vflex products_numb-item is-r"><div className="products_wrap-numb"><div className="products_number">+</div><Counter to={250} className="products_number counter" /><div className="products_number">XP</div></div><div>Leveling &amp; Economy</div></div>
+                      <div className="w-layout-vflex products_numb-item is-r"><div className="products_wrap-numb"><div className="products_number" /><div className="products_number">Live</div><div className="products_number" /></div><div>Twitch / YouTube Alerts</div></div>
                     </div>
                     <div className="products_c-3-l">
-                      <div className="w-layout-vflex products_numb-item"><div className="products_wrap-numb"><div className="products_number">$</div><Counter to={100} className="products_number counter" /><div className="products_number">k</div></div><div>Funding From</div></div>
-                      <div className="w-layout-vflex products_numb-item"><div className="products_wrap-numb"><div className="products_number" /><div className="products_number">Unlimited</div><div className="products_number" /></div><div>External Capital</div></div>
+                      <div className="w-layout-vflex products_numb-item"><div className="products_wrap-numb"><div className="products_number" /><Counter to={24} className="products_number counter" /><div className="products_number">/7</div></div><div>Oversite Radio, On Air</div></div>
+                      <div className="w-layout-vflex products_numb-item"><div className="products_wrap-numb"><div className="products_number" /><div className="products_number">Unlimited</div><div className="products_number" /></div><div>Reaction Roles</div></div>
                     </div>
-                    <div className="products_h-3"><div className="products_card-title">Raise Capital &amp;<br />Earn Profit Splits</div></div>
+                    <div className="products_h-3"><div className="products_card-title">Utilities &amp;<br />Everything Else</div></div>
                     <Badge className="products_img-3-mb" />
                     <Badge className="products_img-3" />
-                    <div className="products_t-3"><div>Access our unique funding program and gain investor visibility as a strategy provider.</div></div>
+                    <div className="products_t-3"><div>Leveling, economy, giveaways, server stats and a live AI radio with a DJ that never repeats a line.</div></div>
                     <img src="/al/Vector_1.svg" loading="lazy" alt="" className="products_bg" />
                   </div>
 
@@ -109,15 +109,15 @@ export default function Products() {
         </div>
       <div className="cards_wrap">
         <div className="w-layout-vflex cards_heading">
-          <h4>Unlock The <span className="span-gradient">Full Power</span> of Quantitative Trading</h4>
+          <h4>Ready in <span className="span-gradient">Minutes</span>, Not Weekends</h4>
         </div>
         <div className="cards_grid hide-mobile-landscape">
           <div className="cards_left">
             <div className="cards_hover-l" />
             <div className="w-layout-vflex cards_top"><div className="cards_icon w-embed"><FundingIcon /></div><div>01</div></div>
             <div className="w-layout-vflex cards_btm">
-              <Split as="h6" className="cards_title">Access Funding</Split>
-              <div data-fade>Keep trading your existing account.<br />Apply for {site.name} funding without paying for more challenge accounts.</div>
+              <Split as="h6" className="cards_title">Connect</Split>
+              <div data-fade>Authorize {site.name} and link your server.<br />No tokens to generate, nothing to host, no command line.</div>
             </div>
           </div>
           <div className="cards_center"><CenterBadge /></div>
@@ -125,8 +125,8 @@ export default function Products() {
             <div className="cards_hover-r" />
             <div className="w-layout-vflex cards_top"><div>02</div><div className="cards_icon w-embed"><ShieldIcon /></div></div>
             <div className="w-layout-vflex cards_btm is-right">
-              <Split as="h6" className="cards_title">Find Opportunities</Split>
-              <div data-fade>Compare track records across performance, drawdown, risk, and consistency.</div>
+              <Split as="h6" className="cards_title">Configure</Split>
+              <div data-fade>Choose your bots and toggle exactly the features you want, all from one visual dashboard.</div>
             </div>
           </div>
         </div>
@@ -136,8 +136,8 @@ export default function Products() {
             <div className="cards_icon w-embed"><EdgeIcon /></div>
             <div className="cards_bottom">
               <div className="w-layout-vflex cards_btm is-left is-btm">
-                <Split as="h6" className="cards_title">Sharpen Your Edge</Split>
-                <div data-fade>Use real-time analytics, signals, portfolio tools and market context to understand where risk builds, and what drives performance.</div>
+                <Split as="h6" className="cards_title">Deploy</Split>
+                <div data-fade>Our auto-deploy pipeline pushes your setup live in under sixty seconds. No restarts, no downtime, instant rollback.</div>
               </div>
               <div>03</div>
             </div>
@@ -149,8 +149,8 @@ export default function Products() {
             <div className="w-layout-vflex cards_bottom">
               <div>04<br /></div>
               <div className="w-layout-vflex cards_btm is-right-btm">
-                <Split as="h6" className="cards_title">Get Discovered</Split>
-                <div data-fade className="text-block-4">Publish a verified track record, earn trust with verification, and audits. Connect with investors through the {site.name} community.</div>
+                <Split as="h6" className="cards_title">Automate</Split>
+                <div data-fade className="text-block-4">Moderation, tickets and utilities run themselves around the clock. Rules enforce, raids get caught, and every change lands in the audit log.</div>
               </div>
             </div>
             <img src="/al/67b494a73d2f4be34ddde300_left.svg" loading="lazy" alt="" className="cards_right-bg" />
@@ -159,7 +159,7 @@ export default function Products() {
       </div>
       </div>
 
-      <div id="features" className="features-trigger" />
+      <div id="process" className="features-trigger" />
     </div>
   );
 }

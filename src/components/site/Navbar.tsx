@@ -52,7 +52,7 @@ export default function Navbar({ ready }: { ready: boolean }) {
                     <div className="nav_menu-text">Menu</div>
                     {LINKS.map((item, i) => item === "|" ? <div className="nav-divider" aria-hidden="true" key={"divider" + i} /> : (
                       <div className="link-wrapper" key={item[1]}>
-                        <a href={item[0]} className={`nav-link${i === 0 ? " w--current" : ""}`} onClick={() => setOpen(false)}>{item[1]}</a>
+                        <a href={item[0]} className={`nav-link${i === 0 ? " w--current" : ""}`} onClick={() => setOpen(false)} {...(item[0].startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>{item[1]}</a>
                         <div className="hover-line" />
                       </div>
                     ))}

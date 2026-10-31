@@ -74,10 +74,12 @@ is then served at the repository's Pages URL.
 - `public/al/` images from the live site, `public/lottie/` its Lottie files, `public/video/` the dashboard videos, `public/assets/` the Oversite mark
 - `scripts/relative-export.mjs` rewrites the export to page-relative paths
 
-## Placeholders to replace
+## Copy and placeholders
 
-The dashboard videos, laptop screenshots and news photos are the live site's own and still carry its mark; the copy
-is the live site's with the name swapped. Swap them for Oversite material in `public/` and the section components.
+All copy, links, prices and FAQs come from the Oversite content handover (managed Discord bots, the fleet, pricing,
+ER:LC bots, the process). The dashboard videos and laptop screenshots in the hero and fleet cards are still the
+reference site's own and carry its mark; swap them for Oversite material in `public/video` and `public/al`. The fleet
+slider cards in `public/assets/fleet-*.svg` are simple generated placeholders until real bot art is dropped in.
 
 ## Claude Code setup
 

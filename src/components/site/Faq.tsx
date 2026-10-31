@@ -6,12 +6,12 @@ import { site } from "@/config/site";
 import { Mark, Split, useFadeUps } from "./primitives";
 
 const QA: [string, string][] = [
-  [`How does ${site.name} work?`, `${site.name} connects your trading accounts and analyzes performance in real time. It tracks key metrics, visualizes results, and helps identify patterns and opportunities for improvement. It allows sharing and is capable of auditing trading results to establish a layer of trust between investors and asset managers. All data is processed securely, giving you clear insights to make more informed trading decisions.`],
-  [`How does the ${site.name} funding program work?`, `Our unique funding program allows you to turn any trading account into an evaluation account. We cooperate with licensed asset managers and multiple Cayman-domiciled funds to connect successful traders with allocators. Keep your account connected with ${site.name} to complete the requirements to join. Once approved, you will be invited to an interview to start the onboarding process. Our minimum funding is $100,000 USD with allocations up to $20,000,000 USD available, offering a real and longterm career opportunity. Note that the funding program and profit splits are subject to selection criteria from our partnered allocators. Check our help center for more details.`],
-  ["Who can use the platform?", `${site.name} is designed for any investor looking to gain more insights into their trading. Beyond serving as a institutional grade dashboard and analytics tool, the audit and share capabilities make it ideal for raising capital and gaining trust with potential investors.`],
-  ["How is performance verified?", `${site.name} uses a proprietary API to connect directly to your trading account on any of the supported platforms. Your trading records (e.g. Trading History, Balance, Equity) are synced, tracked and compared to ground-truth asset prices. This comparison allows to verify not only closed, but importantly point in time mark-to-market returns and deliver US CPA verified audits.`],
-  ["Can I connect multiple accounts?", `Yes, you can connect multiple accounts depending on your account plan. If you have reached the limit of your plan, you can add further accounts under the same plan with our "additional account" add-on.`],
-  [`What makes ${site.name} different?`, `In contrast to similar services, ${site.name} is the only platform that is able to compute point in time mark-to-market equity returns giving outstanding insights into your trading. This, in combination with our CPA cooperation make it not only the strongest analytical tool on the market, but also the benchmark for institutional trust.`],
+  ["What bots do you offer?", "Three core bots: Protection (anti-raid and moderation), Support (tickets) and Utilities (leveling, giveaways, live radio and more). There's also an All-in-One pack that fuses the three into a single bot, with ER:LC tools coming soon."],
+  ["Do I have to host anything myself?", `No. Every bot runs on ${site.name}'s infrastructure. There's no VPS to rent, no process to keep alive, and no token to babysit. You connect your server and we run it.`],
+  ["How fast can I get set up?", "Minutes. Authorize the bots, choose what you want enabled, and our auto-deploy pipeline has you live in under sixty seconds, all from the dashboard."],
+  ["Can my moderators and staff get access?", "Yes. Invite your staff, assign roles to control what they can touch, and every change is written to an audit log so nothing happens off the record."],
+  ["What happens if I cancel?", "Cancel anytime from your dashboard. Charges stop right away, you get a thirty-second undo, and then the bot is removed from your servers and its data is deleted. If something is wrong with your bot, tell us within fourteen days of buying and we will fix it or refund you where it is fair to."],
+  ["Do my settings survive updates and restarts?", "Yes. Your configuration is saved and reloads automatically, so updates and restarts never wipe your setup. Everything stays exactly where you left it."],
 ];
 
 /* "FAQ": the accordion. One answer open at a time; the plus turns into a minus. */
@@ -27,7 +27,7 @@ export default function Faq() {
   }, { scope: root, dependencies: [open] });
 
   return (
-    <div id="blog-faq" className="section_faq" ref={root}>
+    <div id="faq" className="section_faq" ref={root}>
       <div className="padding-global padding-section-medium">
         <div className="container-large">
           <div className="title-top">
@@ -37,8 +37,8 @@ export default function Faq() {
           <div className="w-layout-hflex faq_wrap">
             <div className="faq_left">
               <Split as="h2">Frequently Asked Questions</Split>
-              <div className="faq_sub"><div data-fade>Everything you need to know about the&nbsp;platform, features, and getting started.</div></div>
-              <a href={site.helpUrl} className="button w-button" data-fade>Help Center</a>
+              <div className="faq_sub"><div data-fade>Everything worth knowing before you deploy. Still curious? Open a ticket in the&nbsp;Discord and we'll sort you out.</div></div>
+              <a href={site.discordUrl} target="_blank" rel="noreferrer" className="button w-button" data-fade>Join the Discord</a>
             </div>
             <div className="w-layout-vflex faq_items">
               {QA.map(([q, a], i) => (

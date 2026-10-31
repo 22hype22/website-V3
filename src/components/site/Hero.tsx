@@ -77,9 +77,9 @@ export default function Hero({ ready }: { ready: boolean }) {
             <div className="hero-h-wrap"><Split as="h3" className="heading">Key Figures</Split></div>
             <div className="div-block-3" />
             <div className="w-layout-grid hero_statistics">
-              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={12} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Accounts</div></div>
-              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={1.8} decimals={1} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Pro Traders</div></div>
-              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={990} className="hero_number counter" /><div className="hero_number">M+</div></div><div>Trading Capital</div></div>
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={100} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Members served</div></div>
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={1} className="hero_number counter" /><div className="hero_number">k+</div></div><div>Servers</div></div>
+              <div className="hero_st-item"><div className="hero_number-wrap"><Counter to={100} className="hero_number counter" /><div className="hero_number">+</div></div><div>Staff</div></div>
             </div>
           </div>
         </div>

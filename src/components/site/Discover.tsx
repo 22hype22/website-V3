@@ -4,13 +4,15 @@ import { useRef, useState } from "react";
 import { site } from "@/config/site";
 import { Split, useFadeUps } from "./primitives";
 
+/* Prices from the store: $99 a bot, $50 for a second one, $199 for the All in One Pack. Robux is the dollar price
+   at 100 R$ per $1 plus 30% for Roblox's cut, rounded up to end in 999 (so $99 is R$ 12,999). */
 const PLANS = [
-  { icon: "d-icon.svg", iconHover: "Price_Icon-h.svg", free: true, month: "Free", year: "Free", name: "Free Plan", text: `See what ${site.name} can reveal. Test our core functions and connectors.`, features: ["Connect 1 trading account", "Daily account updates", "Limited analytics dashboard", "Limited leaderboard access"] },
-  { icon: "Price_Icon.png", iconHover: "44.svg", month: "$5/month", year: "$4/month", name: "Basic Plan", text: "Improve your trading with advanced analytics and find verified investment opportunities.", features: ["Connect 1 trading account", "Real-time account updates", "Full analytics dashboard", "Full leaderboard access & shareable trackrecord", <strong key="f">Funding program unlocked (90 days)</strong>] },
-  { icon: "cup_Icon.svg", iconHover: "6453.svg", month: "$29/month", year: "$24/month", name: "Pro Plan", text: "Turn your trading into opportunity. Rank on the leaderboard and get faster access to funding.", features: [<strong key="a">Everything in Basic</strong>, "Includes 3 trading accounts", <strong key="b">Funding program shortlist (30 days)</strong>, "Display your strategy on the leaderboard", "Unlocks automated US CPA audits", "Institutional tools (coming soon)"] },
+  { icon: "d-icon.svg", iconHover: "Price_Icon-h.svg", usd: "$99 one-time", robux: "R$ 12,999", name: "Single Bot", text: "Protection, Support or Utilities. Pick the base your server needs and shape its name, icon, banner and status.", features: ["Every add-on included free", "Managed hosting, $5 a month", "Name, icon, banner and bio are yours", "Changes apply live from the dashboard", <strong key="f">Cancel anytime, 30-second undo</strong>] },
+  { icon: "Price_Icon.png", iconHover: "44.svg", usd: "$50 one-time", robux: "R$ 6,999", name: "Second Bot", text: "Add a second base to your first order and the second bot costs $50. Each one keeps its own identity.", features: ["Any of Protection, Support or Utilities", "Hosting $10 a month for two bots", <strong key="f">Third bot's hosting is free</strong>, "Each bot has its own name and icon", "One dashboard for all of them"] },
+  { icon: "cup_Icon.svg", iconHover: "6453.svg", usd: "$199 one-time", robux: "R$ 25,999", name: "All in One Pack", text: "Protection, Support and Utilities fused into a single bot. Every base your server needs, one install.", features: [<strong key="a">Everything in Protection, Support & Utilities</strong>, "One bot, one dashboard", "Custom branding ready", "Multi-server license", "Managed hosting, $5 a month", "Zero-downtime updates"] },
 ];
 
-/* "Discover Your Perfect Plan": monthly/yearly toggle, three plans, and the additional solutions row. */
+/* "Pick Your Fleet": USD/Robux toggle, three ways to buy, and the ER:LC bots row. */
 export default function Discover() {
   const root = useRef<HTMLDivElement>(null);
   const [yearly, setYearly] = useState(false);
@@ -21,24 +23,24 @@ export default function Discover() {
       <div className="padding-global padding-section-medium">
         <div className="container-large">
           <div className="w-layout-vflex discover_top">
-            <Split as="h4">Discover Your Perfect Plan</Split>
-            <div className="discover_descr"><div data-fade>Find the perfect plan tailored to elevate your trading experience and meet your specific needs.</div></div>
+            <Split as="h4">Pick Your Fleet</Split>
+            <div className="discover_descr"><div data-fade>Run one bot, mix two, or grab the All in One Pack. You only pay for what you need, and every add-on is included free.</div></div>
             <div className="w-layout-hflex discover_togll-wrap">
               <div className={`w-layout-hflex discover_period${yearly ? " is-yearly" : ""}`}>
-                <div>Monthly</div>
+                <div>USD</div>
                 <div className="switch-block" role="switch" aria-checked={yearly} tabIndex={0} onClick={() => setYearly((y) => !y)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setYearly((y) => !y); }}>
                   <div className="off"><div className="togll-circ" /></div>
                   <div className="on" />
                 </div>
-                <div className="togll-bold">Yearly</div>
+                <div className="togll-bold">Robux</div>
               </div>
-              <div className="w-layout-hflex discover_promotion"><div>20% off</div></div>
+              <div className="w-layout-hflex discover_promotion"><div>+30% Roblox fee</div></div>
             </div>
           </div>
 
           <div className="w-layout-grid discover_content">
             {PLANS.map((p) => (
-              <a href={site.signupUrl} className="discover_card w-inline-block" key={p.name} data-fade>
+              <a href={site.buildUrl} className="discover_card w-inline-block" key={p.name} data-fade>
                 <div className="discover_card-top">
                   <div className="w-layout-hflex discover_card-name">
                     <div className="discover_icon-wrap">
@@ -46,12 +48,8 @@ export default function Discover() {
                       <img src={`/al/${p.iconHover}`} loading="lazy" alt="" className="discover_icon is-hover" />
                     </div>
                     <div className="discover_cena-wrap">
-                      {p.free ? <Split>Free</Split> : (
-                        <>
-                          <div className="discover_month">{p.month}</div>
-                          <div className="discover_year"><div className="discover_month-year">{p.year}</div><div className="t-size-14">billed annually</div></div>
-                        </>
-                      )}
+                      <div className="discover_month">{p.usd}</div>
+                      <div className="discover_year"><div className="discover_month-year">{p.robux}</div><div className="t-size-14">one-time, paid on Roblox</div></div>
                     </div>
                   </div>
                   <div className="w-layout-vflex discpver_text">
@@ -60,9 +58,9 @@ export default function Discover() {
                   </div>
                 </div>
                 <div className="discover_wrap">
-                  <div className="button is-card"><div>Get Started</div></div>
+                  <div className="button is-card"><div>Build your bot</div></div>
                   <div className="discover_list-wrap">
-                    <div>Features:</div>
+                    <div>Included:</div>
                     <div className="discover_list">
                       {p.features.map((f, i) => (
                         <div className="discover_item" key={i}><img src="/al/Check_Icon.svg" loading="lazy" alt="" className="icon" /><div>{f}</div></div>
@@ -76,37 +74,37 @@ export default function Discover() {
           </div>
 
           <div className="discover_solutions">
-            <Split as="h5" className="discover_h-solut">Additional Solutions</Split>
+            <Split as="h5" className="discover_h-solut">ER:LC Bots</Split>
             <div className="discover_grid">
-              <a href={site.signupUrl} className="discover_card is-sol w-inline-block" data-fade>
+              <a href={site.buildUrl} className="discover_card is-sol w-inline-block" data-fade>
                 <div className="discover_card-top">
                   <div className="w-layout-hflex discover_card-name is-sol">
                     <div className="discover_icon-wrap"><img src="/al/user-add--01.svg" loading="lazy" alt="" className="discover_icon" /><img src="/al/user-add--01.svg" loading="lazy" alt="" className="discover_icon is-hover" /></div>
-                    <div className="additional_price">$5/month<br /><span className="p-14">per account</span></div>
+                    <div className="additional_price">$19.99<br /><span className="p-14">one-time, hosted free</span></div>
                   </div>
-                  <div className="w-layout-vflex discpver_text is-sol"><div className="discover_title">Additional account</div><div>Add one additional trading account.</div></div>
+                  <div className="w-layout-vflex discpver_text is-sol"><div className="discover_title">{site.name} Dispatch</div><div>An AI voice dispatcher that reads 911 calls aloud and talks back.</div></div>
                 </div>
-                <div className="button is-card"><div>Get Started</div></div>
+                <div className="button is-card"><div>Build it</div></div>
               </a>
-              <a href={site.signupUrl} className="discover_card is-sol w-inline-block" data-fade>
+              <a href={site.buildUrl} className="discover_card is-sol w-inline-block" data-fade>
                 <div className="discover_card-top">
                   <div className="w-layout-hflex discover_card-name is-sol">
                     <div className="discover_icon-wrap"><img src="/al/license.svg" loading="lazy" alt="" className="discover_icon" /><img src="/al/license.svg" loading="lazy" alt="" className="discover_icon is-hover" /></div>
-                    <div className="additional_price">$79/month<br /><span className="p-14">add-on</span></div>
+                    <div className="additional_price">$99<br /><span className="p-14">one-time, hosted free</span></div>
                   </div>
-                  <div className="w-layout-vflex discpver_text"><div className="discover_title">Live US CPA Audit</div><div>Have your trading audited by a US CPA.</div></div>
+                  <div className="w-layout-vflex discpver_text"><div className="discover_title">{site.name} Roleplay</div><div>Everything an ER:LC roleplay community runs on, all dashboard-driven.</div></div>
                 </div>
-                <div className="button is-card"><div>Get Started</div></div>
+                <div className="button is-card"><div>Build it</div></div>
               </a>
-              <a href={`mailto:${site.email}`} className="discover_card is-sol w-inline-block" data-fade>
+              <a href={site.buildUrl} className="discover_card is-sol w-inline-block" data-fade>
                 <div className="discover_card-top">
                   <div className="w-layout-hflex discover_card-name is-sol">
                     <div className="discover_icon-wrap"><img src="/al/news.svg" loading="lazy" alt="" className="discover_icon" /><img src="/al/news.svg" loading="lazy" alt="" className="discover_icon is-hover" /></div>
-                    <Split className="discover_title-sol">Custom</Split>
+                    <div className="additional_price">$119.99<br /><span className="p-14">four bots, hosted free</span></div>
                   </div>
-                  <div className="w-layout-vflex discpver_text"><div className="discover_title">Enterprise White-Labeling</div><div>For firms looking for enterprise solutions.</div></div>
+                  <div className="w-layout-vflex discpver_text"><div className="discover_title">Roleplay Pack</div><div>Roleplay, Instructor, Dispatch and Department. Four bots for one ER:LC community, one price.</div></div>
                 </div>
-                <div className="button is-card"><div>Contact us</div></div>
+                <div className="button is-card"><div>Build it</div></div>
               </a>
             </div>
           </div>
