@@ -373,7 +373,8 @@ html.no-js [data-fade] { opacity: 1; }
 .build_profile-handle { font-size: 0.8rem; opacity: .55; margin-top: -0.35rem; }
 .build_addapp { margin: 0.5rem 0 0.25rem; background: #fff; color: #121212; border-radius: 0.6rem; text-align: center; font-weight: 600; font-size: 0.9rem; padding: 0.6rem; }
 .build_label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: .55; font-weight: 600; margin-top: 0.35rem; }
-.build_profile-bio { font-size: 0.85rem; line-height: 1.45; opacity: .85; white-space: pre-wrap; }
+.build_status { display: flex; align-items: flex-start; gap: 0.45rem; font-size: 0.85rem; line-height: 1.4; opacity: .85; margin-top: -0.3rem; }
+.build_status i { flex: none; width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #3ba55d; margin-top: 0.3rem; }
 .build_roles { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .build_roles span { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 0.5rem; padding: 0.25rem 0.55rem; }
 .build_roles span i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #fff; }

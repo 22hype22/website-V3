@@ -8,7 +8,7 @@ import { Mark, Split, useFadeUps } from "./primitives";
 /* "Design your dream bot": pick bases, give the bot a name, icon and banner, add notes, and watch the
    Discord-style preview and the quote update. "Continue to payment" hands the selection to the store. */
 
-const BIO_MAX = 190;
+const BIO_MAX = 128;
 
 type Identity = { name: string; about: string; bio: string; icon: string | null; banner: string | null };
 
@@ -121,8 +121,8 @@ export default function Build() {
                   <textarea rows={4} placeholder="Tell us about your bot: what it does, its personality, the vibe you're going for, and anything that makes it uniquely yours." value={id.about} onChange={(e) => setId({ ...id, about: e.target.value })} />
                 </label>
                 <label className="build_field">
-                  <span>Discord profile bio <em>(optional, max {BIO_MAX} chars)</em></span>
-                  <textarea rows={2} maxLength={BIO_MAX} placeholder="Short About Me shown on your bot's Discord profile." value={id.bio} onChange={(e) => setId({ ...id, bio: e.target.value })} />
+                  <span>Discord bot status <em>(optional, max {BIO_MAX} chars)</em></span>
+                  <textarea rows={2} maxLength={BIO_MAX} placeholder="The status shown under your bot's name, e.g. Watching over the server" value={id.bio} onChange={(e) => setId({ ...id, bio: e.target.value })} />
                   <small>{id.bio.length}/{BIO_MAX}</small>
                 </label>
               </section>
@@ -143,7 +143,7 @@ export default function Build() {
                   <div className="build_profile-name">{name} <span>APP</span></div>
                   <div className="build_profile-handle">{handle}#0001</div>
                   <div className="build_addapp">+ Add App</div>
-                  {id.bio.trim() && <><div className="build_label">About me</div><div className="build_profile-bio">{id.bio}</div></>}
+                  {id.bio.trim() && <div className="build_status"><i aria-hidden="true" />{id.bio}</div>}
                   <div className="build_label">Roles</div>
                   <div className="build_roles">
                     {pickedBases.length ? pickedBases.map((b) => <span key={b.id}><i />{b.name}</span>) : <span className="is-empty"><i />Pick a bot to add a role</span>}
