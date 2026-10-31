@@ -6,12 +6,11 @@ import { site } from "@/config/site";
 import { Mark, Split, useFadeUps } from "./primitives";
 
 const QA: [string, string][] = [
-  ["What bots do you offer?", "Three core bots: Protection (anti-raid and moderation), Support (tickets) and Utilities (leveling, giveaways, live radio and more). There's also an All-in-One pack that fuses the three into a single bot, with ER:LC tools coming soon."],
+  [`What is ${site.name}?`, `${site.name} Customs is the ER:LC design product from ${site.name}: a managed Discord bot plus web dashboard that runs a Roblox ER:LC (Emergency Response: Liberty County) design server end to end. Commissions and order tickets, designer portfolios, package storefronts, payments, a credits economy, Roblox verification and group sync, and join logs all live in one place, with nothing to self-host.`],
+  [`Sell me on why ${site.name}`, `Looking at the bot market there are three ways you can take. Making a bot yourself, this could be through AI spending all that money on credits then keeping up to date on the bot weekly when Discord makes changes. Paying for a custom bot usually priced at $30-50 then $20 to host it and any future updates or bug fixes are another $20-40. Or you can just go with ${site.name}: one time payment, free hosting for life, and any future updates we make get automatically applied to your bot for completely free.`],
+  [`What can ${site.name} do for an ERLC design server?`, "It handles the full commission workflow: order tickets, an order-status board, designer portfolios, package storefronts, payments, credits, Roblox verification, group sync, and join logs. A design server can take, track, and deliver work like a real business from one dashboard."],
   ["Do I have to host anything myself?", `No. Every bot runs on ${site.name}'s infrastructure. There's no VPS to rent, no process to keep alive, and no token to babysit. You connect your server and we run it.`],
   ["How fast can I get set up?", "Minutes. Authorize the bots, choose what you want enabled, and our auto-deploy pipeline has you live in under sixty seconds, all from the dashboard."],
-  ["Can my moderators and staff get access?", "Yes. Invite your staff, assign roles to control what they can touch, and every change is written to an audit log so nothing happens off the record."],
-  ["What happens if I cancel?", "Cancel anytime from your dashboard. Charges stop right away, you get a thirty-second undo, and then the bot is removed from your servers and its data is deleted. If something is wrong with your bot, tell us within fourteen days of buying and we will fix it or refund you where it is fair to."],
-  ["Do my settings survive updates and restarts?", "Yes. Your configuration is saved and reloads automatically, so updates and restarts never wipe your setup. Everything stays exactly where you left it."],
 ];
 
 /* "FAQ": the accordion. One answer open at a time; the plus turns into a minus. */
