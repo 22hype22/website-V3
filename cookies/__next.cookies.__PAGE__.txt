@@ -1,0 +1,35 @@
+1:"$Sreact.fragment"
+2:"_next/static/chunks/0umf92h1sb77c.js"
+3:I[39756,["$2"],"default"]
+4:I[37457,["$2"],"default"]
+5:"_next/static/chunks/0lm2v5j3hs0mg.js"
+6:"_next/static/chunks/0pqxh9olqbwlb.js"
+7:I[43437,["$2","$5","$6"],"default"]
+e:"_next/static/chunks/0-08_piaq4dri.js"
+f:I[85504,["$2","$e","$6"],"default"]
+10:I[97367,["$2"],"OutletBoundary"]
+11:"$Sreact.suspense"
+14:"ViewportBoundary"
+15:I[97367,["$2"],"$14"]
+16:"MetadataBoundary"
+17:I[97367,["$2"],"$16"]
+18:I[27201,["$2"],"IconMark"]
+:HL["_next/static/chunks/1h271xgu1psk1.css","style"]
+:HL["_next/static/chunks/3rn1qf3twwteo.css","style"]
+:HL["_next/static/chunks/24158j8hakazg.css","style"]
+:HL["_next/static/chunks/19rhlcx2srev9.css","style"]
+9:X
+c:X
+c:C
+d:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","$Lf",null,{"doc":{"slug":"cookies","file":"cookies.html","title":"Cookie Policy","blurb":"What this site stores on your device, what it does not, and the third parties it talks to.","sections":[{"h":"The short version","p":["This website uses no tracking cookies, no analytics and no advertising networks. It keeps two small values in your browser so the site works the way you left it. That is all."]},{"h":"What we store","p":["oversite_session: a cookie set by the dashboard when you sign in, so this site can show Dashboard instead of Sign in. It is essential to that feature and expires when your session does.","oversite:signed-in and oversite:cookie-notice: two values in your browser's local storage. The first mirrors your sign-in state; the second records that you dismissed the cookie notice so it does not come back. Neither leaves your device."]},{"h":"What we do not do","p":["We do not set analytics cookies, advertising cookies, or any identifier that follows you to other sites. We do not fingerprint your browser. We do not sell or share browsing data."]},{"h":"Third parties","p":["This website loads no third-party scripts. Fonts, images and code are served from our own hosting. The Discord, TikTok and YouTube links take you to those sites, which set their own cookies once you are there.","The dashboard and checkout at oversite.shop use their own providers (Stripe for payment, Supabase and Railway for hosting, Roblox for Robux payments, Discord for sign-in), covered by the Privacy Policy."]},{"h":"Managing storage","p":["You can clear these values at any time from your browser's site-data settings. Clearing them signs you out of the dashboard on this site and shows the cookie notice again. The site works without them."]},{"h":"Changes","p":["If we ever add a cookie that is not essential, we will update this page and ask for your consent before it is set."]}]}}],[["$","link","0",{"rel":"stylesheet","href":"_next/static/chunks/19rhlcx2srev9.css","precedence":"next"}],["$","script","script-0",{"src":"_next/static/chunks/0-08_piaq4dri.js","async":true}],["$","script","script-1",{"src":"_next/static/chunks/0pqxh9olqbwlb.js","async":true}]],["$","$L10",null,{"children":["$","$11",null,{"name":"Next.MetadataOutlet","children":"$@12"}]}]]}],"p":"$@13","v":null,"s":"$9"}}]]
+a:[["children",{"s":"cookies","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}]}]]}],"p":"$@b","v":"$c","s":"$9"},"c":"$Qd"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"_next/static/chunks/1h271xgu1psk1.css","precedence":"next"}],["$","link","1",{"rel":"stylesheet","href":"_next/static/chunks/3rn1qf3twwteo.css","precedence":"next"}],["$","link","2",{"rel":"stylesheet","href":"_next/static/chunks/24158j8hakazg.css","precedence":"next"}],["$","script","script-0",{"src":"_next/static/chunks/0umf92h1sb77c.js","async":true}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"Organization\",\"name\":\"Oversite\",\"url\":\"https://www.oversite.shop/\",\"email\":\"support@oversite.shop\",\"foundingDate\":\"2025\",\"address\":{\"@type\":\"PostalAddress\",\"addressRegion\":\"Minnesota\",\"addressCountry\":\"US\"},\"sameAs\":[\"https://discord.gg/ovs\",\"https://www.tiktok.com/@oversite.erlc\",\"https://www.youtube.com/@all.things.oversite\"],\"description\":\"Managed Discord bots for Roblox and ER:LC communities. Nothing to host, no tokens, no code.\"}"}}]}],["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}],"notFound":[["$","$L7",null,{}],[["$","link","0",{"rel":"stylesheet","href":"_next/static/chunks/19rhlcx2srev9.css","precedence":"next"}]]]}]}]]}]]}],"p":"$@8","v":null,"s":"$9"},"c":"$Qa"},"h":{"r":["$","$1","h",{"children":[null,["$","$L15",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L17",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$11",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Cookie Policy — Oversite"}],["$","meta","1",{"name":"description","content":"Oversite builds managed Discord bots and dashboards for Roblox communities: Protection, Support and Utilities bots plus ER:LC tools, with nothing to host, no tokens and no code."}],["$","link","2",{"rel":"icon","href":"favicon.ico?favicon.117ezoe8m31dk.ico","sizes":"48x48","type":"image/x-icon"}],["$","link","3",{"rel":"icon","href":"assets/favicon.png"}],["$","$L18","4",{}]]}]}],null]}],null]}],"p":"$@19","v":null,"s":"$9"}},"a":"$@1a","u":"$@1b","b":"ZlMxq-ey6FYWC1kwLaWWU"}
+12:null
+9:300
+1b:true
+9:C
+1a:0
+b:"$undefined"
+8:"$undefined"
+19:"$undefined"
+13:"$undefined"
