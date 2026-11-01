@@ -39,7 +39,7 @@ for (const file of walk(DST)) {
     s = s.replace(/\uFFFD/g, "\\uFFFD"); // some hosts reject the literal replacement character; the escape is equivalent
   } else if (ABS404 && ext === ".html" && relative(DST, file) === "404.html") {
     s = s.replace(/(["'(])\/_next\//g, `$1${ABS404}${NEXT_DIR}/`).replace(new RegExp(`(["'(])/${PUBLIC}/`, "g"), `$1${ABS404}$2/`).replace(/(["'])\/favicon\.ico/g, `$1${ABS404}favicon.ico`);
-    s = s.replace(/href="\.\//g, `href="${ABS404}`).replace(/href="(privacy|terms|refunds)\.html"/g, `href="${ABS404}$1.html"`);
+    s = s.replace(/href="\.\//g, `href="${ABS404}`).replace(/href="(privacy|terms|refunds|cookies)\.html"/g, `href="${ABS404}$1.html"`);
     s = s.replace("<head>", `<head><script>self.TURBOPACK_CHUNK_BASE_PATH="${ABS404}${NEXT_DIR}/"</script>`);
   } else {
     s = s.replace(/(["'(])\/_next\//g, `$1${NEXT_DIR}/`).replace(new RegExp(`(["'(])/${PUBLIC}/`, "g"), "$1$2/").replace(/(["'])\/favicon\.ico/g, "$1favicon.ico");

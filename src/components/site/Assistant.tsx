@@ -134,7 +134,7 @@ export default function Assistant({ open, onClose }: { open: boolean; onClose: (
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 13V3M3.5 7.5L8 3l4.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </button>
         </form>
-        <p className="ast_note">Answers come from an AI, so check anything that matters. <a href={site.discordUrl} target="_blank" rel="noreferrer">Talk to a person</a> from the team, or email <a href={`mailto:${site.email}`}>{site.email}</a>.</p>
+        <p className="ast_note">Answers come from an AI, so check anything that matters. <a href={site.discordUrl} target="_blank" rel="noreferrer">Talk to a person</a> from the team, or email <a href={`mailto:${site.email}`}>{site.email}</a>. Messages are handled under our <a href={site.legal.privacy}>Privacy Policy</a>.</p>
       </footer>
     </div>,
     document.body,

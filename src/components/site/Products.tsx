@@ -64,19 +64,19 @@ export default function Products() {
                     </div>
                     <div className="products_img-1">
                       <div className="lottie-dashboard w-background-video w-background-video-atom">
-                        <video autoPlay loop muted playsInline poster="/video/Home_poster.0000000.jpg" style={{ backgroundImage: "url(/video/Home_poster.0000000.jpg)" }}>
+                        <video autoPlay loop muted playsInline aria-label="The ER:LC dashboard in use" poster="/video/Home_poster.0000000.jpg" style={{ backgroundImage: "url(/video/Home_poster.0000000.jpg)" }}>
                           <source src="/video/Home_mp4.mp4" type="video/mp4" />
                           <source src="/video/Home_webm.webm" type="video/webm" />
                         </video>
                       </div>
-                      <img src="/al/4b4f713eb9a8932b22a99f6fc0ddd8e9.webp" loading="lazy" alt="" className="products_leptop" />
+                      <img src="/al/4b4f713eb9a8932b22a99f6fc0ddd8e9.webp" loading="lazy" alt="Laptop frame around the dashboard" className="products_leptop" />
                     </div>
                     <img src="/al/c-bg-1.svg" loading="lazy" alt="" className="products_bg" />
                   </div>
 
                   <div className="products_c-2">
-                    <img src="/al/53320e10f1c682c91307b5d6df3ac61954453d6a.avif" loading="lazy" alt="" className="products_img-2 is-on" />
-                    <img src="/al/laptop0.avif" loading="lazy" alt="" className="products_img-2" />
+                    <img src="/al/53320e10f1c682c91307b5d6df3ac61954453d6a.avif" loading="lazy" alt="Laptop showing a FiveM community dashboard" className="products_img-2 is-on" />
+                    <img src="/al/laptop0.avif" loading="lazy" alt="Closed laptop" className="products_img-2" />
                     <div className="w-layout-vflex products_c-text is-2">
                       <img src="/al/p.svg" loading="lazy" alt="" className="products_icon-card" />
                       <div className="products_c-btm">

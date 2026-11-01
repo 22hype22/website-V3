@@ -8,6 +8,7 @@ import { useBackgroundDrift } from "@/lib/useBackgroundDrift";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import LegalBar from "./LegalBar";
+import CookieNotice from "./CookieNotice";
 import Cursor from "./Cursor";
 
 /* The frame around every page that is not the home page: the same nav, mountain, footer and legal line, no
@@ -26,12 +27,14 @@ export default function Page({ children, footer = true }: { children: React.Reac
   return (
     <ReactLenis root ref={lenisRef} options={{ autoRaf: false, lerp: 0.1, wheelMultiplier: 0.7, smoothWheel: !reduceMotion() }}>
       <div className="page-wrapper">
+        <a href="#top" className="skip-link">Skip to content</a>
         <Navbar ready sub />
         <main id="top" className="main-wrapper">
           {children}
           {footer && <Footer sub />}
         </main>
         <LegalBar />
+        <CookieNotice />
       </div>
       <Cursor />
     </ReactLenis>

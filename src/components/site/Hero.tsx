@@ -52,7 +52,7 @@ export default function Hero({ ready }: { ready: boolean }) {
 
   return (
     <section className="section_hero" id="top" ref={root}>
-      <a href="#scrin" className="btn-arrow-btm hide-tablet w-inline-block"><img src="/al/Arrow_Icon.svg" loading="lazy" alt="" className="arrow-icon" /></a>
+      <a href="#scrin" className="btn-arrow-btm hide-tablet w-inline-block" aria-label="Scroll down"><img src="/al/Arrow_Icon.svg" loading="lazy" alt="" className="arrow-icon" /></a>
       <div className="hero_icon hide-tablet"><Mark /></div>
       <div className="padding-global is-100">
         <div className="container-large is-100">
@@ -64,13 +64,13 @@ export default function Hero({ ready }: { ready: boolean }) {
             <div className="hero_leptop-wrap">
               <div className="hero_lottie-wrap is-video">
                 <div className="hero_lottie is-video w-background-video w-background-video-atom">
-                  <video ref={video} muted playsInline preload="auto" poster="/video/Hom_poster.0000000.jpg" style={{ backgroundImage: "url(/video/Hom_poster.0000000.jpg)" }}>
+                  <video ref={video} muted playsInline preload="auto" aria-label="The Oversite dashboard in use" poster="/video/Hom_poster.0000000.jpg" style={{ backgroundImage: "url(/video/Hom_poster.0000000.jpg)" }}>
                     <source src="/video/Hom_mp4.mp4" type="video/mp4" />
                     <source src="/video/Hom_webm.webm" type="video/webm" />
                   </video>
                 </div>
               </div>
-              <img src="/al/lep.webp" loading="eager" alt="" className="leptop" />
+              <img src="/al/lep.webp" loading="eager" alt="A laptop, its lid opening to show the Oversite dashboard" className="leptop" />
             </div>
           </div>
           <div className="w-layout-vflex hero_h-btm">

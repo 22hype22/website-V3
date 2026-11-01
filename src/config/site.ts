@@ -25,6 +25,7 @@ export const site = {
     privacy: "privacy.html",
     terms: "terms.html",
     refunds: "refunds.html",
+    cookies: "cookies.html",
   },
   /* Optional: a server that answers the help chat (POST { messages } -> { reply }). Empty = built-in answers. */
   assistantEndpoint: "",

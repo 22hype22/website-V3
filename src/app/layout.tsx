@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "@/styles/webflow.css";
 import "@/styles/overrides.css";
+import { site } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Oversite — Managed Discord Bots for Serious Servers",
@@ -9,13 +10,24 @@ export const metadata: Metadata = {
   icons: { icon: "/assets/favicon.png" },
 };
 
+/* Who runs the site, for search engines: the business, where it is, and how to reach it. */
+const ORG = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: site.name,
+  url: "https://www.oversite.shop/",
+  email: site.email,
+  foundingDate: String(site.founded),
+  address: { "@type": "PostalAddress", addressRegion: "Minnesota", addressCountry: "US" },
+  sameAs: [site.discordUrl, site.tiktokUrl, site.youtubeUrl],
+  description: "Managed Discord bots for Roblox and ER:LC communities. Nothing to host, no tokens, no code.",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG) }} />
       </head>
       <body>{children}</body>
     </html>

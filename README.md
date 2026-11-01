@@ -81,6 +81,13 @@ All copy, links, prices and FAQs come from the Oversite content handover (manage
 ER:LC bots, the process). The dashboard videos and laptop screenshots in the hero and fleet cards are still the
 reference site's own and carry its mark; swap them for Oversite material in `public/video` and `public/al`.
 
+## Before launch: licensing and legal review
+
+- **Images and video are placeholders you do not own.** The laptop photos (`public/al/lep.webp`, `laptop0.avif`, `4b4f…webp`, `5332…avif`) and the dashboard clips (`public/video/*`) came with the AlphaLedger template. Replace them with your own screenshots or properly licensed stock before the site goes public. The mountain photo, mark and icons are yours.
+- **Legal pages are drafts.** `src/content/legal.ts` (Privacy, Terms, Sales & Refunds, Cookies) was written from the facts in the content handover, not reviewed by a lawyer. Read every section and have it checked.
+- **Claims.** Every number on the page should be one you can back up: the "By the Numbers" counters in `Hero.tsx`, "under a minute" in `Get.tsx`, and the FiveM card copy in `Products.tsx` (written without a FiveM product brief).
+- **What the site does for compliance already:** essential-only storage with a dismissable cookie notice (`CookieNotice.tsx`) and a cookie policy; no third-party scripts (fonts are self-hosted in `public/fonts`); business details in the footer and an Organization schema in `layout.tsx`; age and policy consent under the builder's pay button; pre-orders labelled as such; fees spelled out in the quote; alt text on meaningful images and labels on icon links; a skip link and visible keyboard focus; a data-deletion path in the Privacy Policy and on every legal page.
+
 ## Claude Code setup
 
 `.claude/` (skills, agents, settings), `.agents/`, `.mcp.json`, `skills-lock.json` and `claudex.toml` are copied

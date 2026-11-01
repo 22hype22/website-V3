@@ -78,7 +78,7 @@ export default function Navbar({ ready, sub = false }: { ready: boolean; sub?: b
               <a href={account.href} className="button is-nav is-account hide-desktop w-inline-block">
                 <div className="nav-btn-t">{account.label}</div>
               </a>
-              <div className="menu-button w-nav-button" aria-label="menu" role="button" tabIndex={0} aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+              <div className="menu-button w-nav-button" aria-label="Menu" role="button" tabIndex={0} aria-expanded={open} onClick={() => setOpen((o) => !o)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen((o) => !o); } }}>
                 <img loading="lazy" src="/al/Group_207275068.svg" alt="" className="menu-btn" />
                 <img loading="lazy" src="/al/Group_2072750768.svg" alt="" className="menu-btn is-close" />
               </div>

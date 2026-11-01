@@ -49,8 +49,17 @@ export const LEGAL: LegalDoc[] = [
         "You can see, correct, export or delete your account data at any time by emailing support@oversite.shop from the address on your account. Deleting your account removes your bots.",
         "If you live somewhere with privacy laws that give you more rights (the EU, UK, California and others), those rights apply and we will honour them.",
       ] },
+      { h: "Cookies and storage", p: [
+        "This website sets no tracking cookies. It keeps two things in your browser's storage: whether you are signed in, and whether you have dismissed the cookie notice. Fonts are served from our own servers, so no font provider sees your visit. The full list is in the Cookie Policy.",
+      ] },
+      { h: "Emails", p: [
+        "We email you about your orders, your bots and changes to these terms. If we ever send marketing email, every message carries an unsubscribe link, and we only send it to people who asked for it.",
+      ] },
       { h: "Children", p: [
         "You must be 13 or older to use Oversite, in line with Discord's own rules. If you are under 18, a parent or guardian must agree to these terms and make any purchase for you. If we learn we hold data from a child under 13, we delete it.",
+      ] },
+      { h: "Delete your data", p: [
+        "Email support@oversite.shop with the subject \"Data deletion\" from the address on your account, or use the Data requests link on any legal page. We confirm within 48 hours, delete your account, bots and bot data within 30 days, and keep only what tax and payment rules require us to keep.",
       ] },
       { h: "Security", p: [
         "Data is encrypted in transit and at rest with our hosting providers. Access inside Oversite is limited to what is needed to run the service and answer support. No system is perfectly secure, so tell us straight away at support@oversite.shop if you think your account has been misused.",
@@ -146,6 +155,34 @@ export const LEGAL: LegalDoc[] = [
       ] },
       { h: "Questions", p: [
         "Email support@oversite.shop, or use the Need assistance button in #dashboard on our Discord. Nothing in this policy limits rights you have under the consumer law where you live.",
+      ] },
+    ],
+  },
+  {
+    slug: "cookies",
+    file: "cookies.html",
+    title: "Cookie Policy",
+    blurb: "What this site stores on your device, what it does not, and the third parties it talks to.",
+    sections: [
+      { h: "The short version", p: [
+        "This website uses no tracking cookies, no analytics and no advertising networks. It keeps two small values in your browser so the site works the way you left it. That is all.",
+      ] },
+      { h: "What we store", p: [
+        "oversite_session: a cookie set by the dashboard when you sign in, so this site can show Dashboard instead of Sign in. It is essential to that feature and expires when your session does.",
+        "oversite:signed-in and oversite:cookie-notice: two values in your browser's local storage. The first mirrors your sign-in state; the second records that you dismissed the cookie notice so it does not come back. Neither leaves your device.",
+      ] },
+      { h: "What we do not do", p: [
+        "We do not set analytics cookies, advertising cookies, or any identifier that follows you to other sites. We do not fingerprint your browser. We do not sell or share browsing data.",
+      ] },
+      { h: "Third parties", p: [
+        "This website loads no third-party scripts. Fonts, images and code are served from our own hosting. The Discord, TikTok and YouTube links take you to those sites, which set their own cookies once you are there.",
+        "The dashboard and checkout at oversite.shop use their own providers (Stripe for payment, Supabase and Railway for hosting, Roblox for Robux payments, Discord for sign-in), covered by the Privacy Policy.",
+      ] },
+      { h: "Managing storage", p: [
+        "You can clear these values at any time from your browser's site-data settings. Clearing them signs you out of the dashboard on this site and shows the cookie notice again. The site works without them.",
+      ] },
+      { h: "Changes", p: [
+        "If we ever add a cookie that is not essential, we will update this page and ask for your consent before it is set.",
       ] },
     ],
   },

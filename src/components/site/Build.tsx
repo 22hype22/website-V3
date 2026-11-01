@@ -63,7 +63,7 @@ export default function Build() {
             <button type="button" key={b.id} className={`build_card${on ? " is-on" : ""}`} onClick={() => toggleBase(b)} aria-pressed={on}>
               <div className="build_card-top">
                 <div className="build_card-name"><i className="build_check" aria-hidden="true" />{b.name}</div>
-                {b.soon && <span className="build_pill">Coming soon</span>}
+                {b.soon && <span className="build_pill">{on ? "Pre-order" : "Coming soon"}</span>}
               </div>
               <div className="build_card-tag">{b.tagline}</div>
               <ul className="build_card-list">{b.bullets.map((x) => <li key={x}>{x}</li>)}</ul>
@@ -181,7 +181,7 @@ export default function Build() {
                     {id.banner ? <img src={id.banner} alt="" /> : <span>Upload banner</span>}
                   </label>
                 </div>
-                <div className="build_hint">PNG/JPG up to 4MB. Icon shows as the bot&apos;s avatar; banner appears at the top of the profile.</div>
+                <div className="build_hint">PNG/JPG up to 4MB. Icon shows as the bot&apos;s avatar; banner appears at the top of the profile. Images stay on your device until you place the order.</div>
                 <label className="build_field">
                   <span>Name</span>
                   <input type="text" maxLength={32} placeholder="e.g. Oversite, .refined, The Six Roleplay" value={id.name} onChange={(e) => setId({ ...id, name: e.target.value })} />
@@ -230,7 +230,7 @@ export default function Build() {
                   </>
                 ) : q.items.map((i) => (
                   <div className="build_row is-item" key={i.base.id}>
-                    <span>{i.base.name}{i.note ? <em> · {i.note}</em> : null}</span>
+                    <span>{i.base.name}{i.note ? <em> · {i.note}</em> : null}{i.base.soon ? <em> · pre-order, built when it ships</em> : null}</span>
                     <b>{i.base.price > 0 ? fmtUsd(i.price) : "TBC"}</b>
                   </div>
                 ))}
@@ -248,11 +248,14 @@ export default function Build() {
                   )}
                 </div>
 
+                <div className="build_row"><span>Other fees</span><b>None</b></div>
+                <div className="build_fine">Payment plans add a 15% plan fee. Robux prices include Roblox&apos;s 30% cut. Nothing else is added at checkout.</div>
                 <a href={checkout} target="_blank" rel="noreferrer" className={`build_cta${hasPick ? "" : " is-off"}`} aria-disabled={!hasPick} onClick={(e) => { if (!hasPick) e.preventDefault(); }}>
                   Continue to payment <span aria-hidden="true">→</span>
                 </a>
                 {custom && warn.rateLimit && <div className="build_fine is-warn">Heavy build: a busy server may see Discord rate limits with this many parts.</div>}
                 {custom && warn.voice.length > 0 && <div className="build_fine is-warn">{warn.voice.map((m) => m.name).join(" and ")} share one voice channel and may conflict.</div>}
+                <div className="build_consent">By continuing you confirm you&apos;re 13 or older (under 18 with a parent or guardian&apos;s permission) and agree to the <a href={site.legal.terms}>Terms of Use</a> and <a href={site.legal.refunds}>Sales &amp; Refund Policy</a>. Your details are handled under the <a href={site.legal.privacy}>Privacy Policy</a>.</div>
                 <div className="build_fine">{custom ? "Custom builds are estimates, confirmed before any work begins. You get the parts you pick and their updates; new parts are sold separately." : "Final pricing depends on scope. We'll confirm everything before any work begins."}</div>
               </div>
             </aside>

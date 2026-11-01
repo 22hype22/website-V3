@@ -28,7 +28,7 @@ export default function Legal({ doc }: { doc: LegalDoc }) {
               <aside className="legal_side" data-fade>
                 <div className="legal_side-label">Policies</div>
                 {LEGAL.map((d) => <a key={d.slug} href={d.file} className={`legal_tab${d.slug === doc.slug ? " is-on" : ""}`}>{d.title}</a>)}
-                <div className="legal_side-note">Questions about any of these? Email <a href={`mailto:${site.email}`}>{site.email}</a>.</div>
+                <div className="legal_side-note">Questions about any of these? Email <a href={`mailto:${site.email}`}>{site.email}</a>.<br /><a href={`mailto:${site.email}?subject=Data%20deletion`}>Data requests</a>: see, export or delete what we hold on you.</div>
               </aside>
               <article className="legal_body">
                 {doc.sections.map((s, i) => (

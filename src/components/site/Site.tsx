@@ -18,6 +18,7 @@ import Faq from "./Faq";
 import Stay from "./Stay";
 import Footer from "./Footer";
 import LegalBar from "./LegalBar";
+import CookieNotice from "./CookieNotice";
 import Cursor from "./Cursor";
 
 export default function Site() {
@@ -64,6 +65,7 @@ export default function Site() {
   return (
     <ReactLenis root ref={lenisRef} options={{ autoRaf: false, lerp: 0.1, wheelMultiplier: 0.7, smoothWheel: !reduceMotion() }}>
       <div className="page-wrapper">
+        <a href="#top" className="skip-link">Skip to content</a>
         <Navbar ready={revealed} />
         {!loaded && <Preloader onReveal={() => setRevealed(true)} onDone={() => setLoaded(true)} />}
         <main id="top" className="main-wrapper">
@@ -78,6 +80,7 @@ export default function Site() {
           <Footer />
         </main>
         <LegalBar />
+        <CookieNotice />
       </div>
       <Cursor />
     </ReactLenis>

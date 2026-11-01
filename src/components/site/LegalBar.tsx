@@ -6,7 +6,7 @@ import { site } from "@/config/site";
 /* The legal line under the footer: copyright on the left, the three policies in the middle, the support address on
    the right. The bar itself stays put. The three policy links are pinned near the bottom of the screen, faded, and
    once their slot in the bar scrolls into view they ride up with it (no jump) and brighten when they are home. */
-const LINKS: [string, string][] = [[site.legal.privacy, "Privacy Policy"], [site.legal.terms, "Terms of Use"], [site.legal.refunds, "Sales and Refunds"]];
+const LINKS: [string, string][] = [[site.legal.privacy, "Privacy Policy"], [site.legal.terms, "Terms of Use"], [site.legal.refunds, "Sales and Refunds"], [site.legal.cookies, "Cookies"]];
 const REST = 16; // px above the bottom edge while floating
 
 export default function LegalBar() {

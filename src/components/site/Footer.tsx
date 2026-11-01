@@ -25,6 +25,7 @@ export default function Footer({ sub = false }: { sub?: boolean }) {
             <div className="w-layout-vflex footer_center">
               <div className="brand is-footer w-nav-brand"><Brand footer /></div>
               <div>Managed Discord bots for serious servers. Nothing to host, no tokens, no code. Remote-first, est. {site.founded}.</div>
+              <div className="footer_business">{site.name} is a sole proprietorship based in Minnesota, United States. <a href={`mailto:${site.email}`}>{site.email}</a></div>
               <div className="w-layout-hflex footer_socia">
                 <a href={site.discordUrl} target="_blank" rel="noreferrer" className="footer_soc w-inline-block" aria-label="Discord">
                   <div className="icon-16 w-embed">
@@ -44,7 +45,7 @@ export default function Footer({ sub = false }: { sub?: boolean }) {
               </div>
             </div>
             <div className="w-layout-vflex footer_right">
-              <a href="#top" className="btn-top w-inline-block"><img src="/al/Arrow_Icon.svg" loading="lazy" alt="" className="arrow-icon" style={{ transform: "rotate(180deg)" }} /></a>
+              <a href="#top" className="btn-top w-inline-block" aria-label="Back to top"><img src="/al/Arrow_Icon.svg" loading="lazy" alt="" className="arrow-icon" style={{ transform: "rotate(180deg)" }} /></a>
               <div className="link">Not affiliated with Discord Inc.</div>
             </div>
           </div>
